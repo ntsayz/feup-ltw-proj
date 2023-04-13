@@ -113,3 +113,6 @@ CREATE TABLE ticket_records (
     ticket_id INTEGER REFERENCES tickets(id),
     author_id INTEGER REFERENCES users(id)
 );
+
+
+

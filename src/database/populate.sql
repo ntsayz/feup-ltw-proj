@@ -50,7 +50,7 @@ VALUES ('Closed');
 
 
 INSERT INTO tickets (title, description, priority, status_id, created_by, department_id)
-VALUES ('Server down', 'Our server is currently down, please investigate', 1, 1, 2, 3);
+VALUES ('Server down', 'Our server is currently down, please investigate', 5, 1, 2, 3);
 
 INSERT INTO tickets (title, description, priority, status_id, created_by, department_id)
 VALUES ('Billing issue', 'I have been overcharged on my bill, please assist', 2, 1, 1, 1);
@@ -100,12 +100,24 @@ VALUES (2, 2);
 
 
 INSERT INTO messages (ticket_id, author_id, message)
-VALUES (1, 2, 'I have checked the server and identified the issue. We are working to fix it as soon as possible.');
+VALUES (1, 4, 'I have checked the server and identified the issue. We are working to fix it as soon as possible.');
 
 INSERT INTO messages (ticket_id, author_id, message)
 VALUES (2, 2, 'How should I fix this?');
 
 
+
+
+INSERT INTO ticket_records(action,ticket_id,author_id)
+VALUES ("janedoe created the ticket",1,2);
+
+
+
+
+
+--action = "STATUS CHANGED: $prev status TO $curr status"
+--action = "Sagent name ASSIGNED $assigned agent name"
+--action = "$username edited $prev description TO $curr description
 
 
 
