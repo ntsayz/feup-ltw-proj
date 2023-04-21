@@ -1,5 +1,7 @@
-<?php function getDatabaseConnection(){
-    $db = new PDO('sqlite:database/ticketmanagement.db');
-    return $db;
-}
+<?php
+  $dbh = new PDO('sqlite:'.__DIR__.'/ticketmang.db');
+  $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  // activate use of foreign key constraints
+  $dbh->exec( 'PRAGMA foreign_keys = ON;' );
 ?>
