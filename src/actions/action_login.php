@@ -1,6 +1,6 @@
 <?php
-require_once("../includes/init.php");
-include_once("../database/user.php");
+require_once(__DIR__.'/../initialization/init.php');
+include_once(__DIR__.'/../database/init.php');
 
 if(($user_id = check_login($_POST['username'], $_POST['password'])) != -1){
 

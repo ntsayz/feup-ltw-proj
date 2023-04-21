@@ -4,6 +4,6 @@
   if(!isset($_SESSION['username'])){
     header("Location:pages/login.php");
   } else {
-  	header("Location:templates/home/home_page.php");
+  	header("Location:pages/home_page.php");
   }
 ?>
