@@ -14,10 +14,13 @@
             <form action="../actions/action_login.php" method="post">
                 <input type="text" id="username" name="username" placeholder="username"/>
                 <input type="text id="password" name="password" placeholder="password"/>
-                 <button type="submit">Login</button>
+                 <button type="submit" value="Next">Login</button>
             </form>
-        <p>Not a member <a> Sign Up</a></p>
+        <p>Don't have an account? <a>Register</a></p>
     </div>
   </div>
+  <p id="error_messages">
+        <?php if(isset($_SESSION['ERROR'])) echo htmlentities($_SESSION['ERROR']); unset($_SESSION['ERROR'])?>
+    </p>
 </body>
 </html>
