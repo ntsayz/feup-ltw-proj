@@ -1,16 +1,19 @@
 ---USERS
 
 INSERT INTO users (username, password, full_name, email, user_type)
-VALUES ('johndoe', 'password123', 'John Doe', 'johndoe@example.com', 'client');
+VALUES ('joao', 'password123', 'Joao', 'joao@exemplo.com', 'client');
 
 INSERT INTO users (username, password, full_name, email, user_type)
-VALUES ('janedoe', 'mypassword', 'Jane Doe', 'janedoe@example.com', 'client');
+VALUES ('joana', 'averybadpasssword', 'Joana', 'joana@exemplo.com', 'client');
 
 INSERT INTO users (username, password, full_name, email, user_type)
-VALUES ('adminuser', 'adminpassword', 'Admin User', 'admin@example.com', 'admin');
+VALUES ('ntsayz', 'admin', 'Ntsay Zacarias', 'ntsayyzacarias@hotmail.com', 'admin');
 
 INSERT INTO users (username, password, full_name, email, user_type)
-VALUES ('agentuser', 'agentpassword', 'Agent User', 'agent@example.com', 'agent');
+VALUES ('treasure', 'admin', 'Treasure Langa', 'treasure@exemplo.com', 'admin');
+
+INSERT INTO users (username, password, full_name, email, user_type)
+VALUES ('afonso', 'anotherbadpassword', 'Afonso', 'agent@exemplo.com', 'agent');
 
 
 
