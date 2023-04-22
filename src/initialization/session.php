@@ -16,11 +16,15 @@
    }
 
    function get_username() {
-    if(isset($_SESSION['username'])) {
-         return $_SESSION['username'];
-    } else {
-        return null;
+        if(isset($_SESSION['username'])) {
+            return $_SESSION['username'];
+        } else {
+            return null;
+        }
+
     }
 
-}
+    
+
+
 ?>

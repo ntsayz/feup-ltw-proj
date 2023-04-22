@@ -16,7 +16,7 @@
                 <input type="text id="password" name="password" placeholder="password"/>
                  <button type="submit" value="Next">Login</button>
             </form>
-        <p>Don't have an account? <a>Register</a></p>
+        <p>Don't have an account? <a href="/pages/register.php">Register</a></p>
     </div>
   </div>
   <p id="error_messages">

@@ -3,7 +3,6 @@ require_once(__DIR__.'/../initialization/init.php');
 require_once(__DIR__.'/../database/user.php');
 
 
-echo "This was called";
 if(($user_id = check_login($_POST['username'], $_POST['password'])) != -1){
 	
 	set_current_user($user_id, $_POST['username']);
@@ -14,7 +13,7 @@ if(($user_id = check_login($_POST['username'], $_POST['password'])) != -1){
 	// Redirect the user to the home_page.php file	
 	header("Location: $home_page_url");	
 } else {
-	$_SESSION['ERROR'] = 'Incorrect username or password';
+	$_SESSION['ERROR'] = 'Incorrect username or password '.$user_id;
 }
 
 ?>
