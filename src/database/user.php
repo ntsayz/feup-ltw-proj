@@ -85,4 +85,22 @@
   }
 
 
+  function get_user_type($username){
+
+    try {
+
+      $stmt = $dbh->prepare('SELECT user_type FROM users WHERE username = ?');
+      $stmt->execute(array($username));
+      if($row = $stmt->fetch()) {
+        return $row['id'];
+    }
+  	  
+    }catch(PDOException $e) {
+      
+      return -1;
+    }
+        
+  }
+
+
 ?>
