@@ -1,20 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400;600&display=swap');
 
+:root{
+  --main-blue: #022B3A;
+  --tea-green: #CADBC0;
+  --tea-green-light: #A8C397;
+  --pink-bittersweet: #F97068;
+}
 * {
   font-family: 'Roboto Mono', monospace  !important;
+}
+header {
+  background-color: var(--main-blue);
 }
 
 body{
   padding:0;
   margin:0;
-  background-color: #022B3A;
+  background-color: var(--main-blue);
   font-family: 'Roboto Mono', monospace;
 }
 .inner-container {
   background-color: white;
 }
 h1{
-  color:#CADBC0;
+  color:var(--tea-green);
 }
 
 .box {
@@ -25,7 +34,7 @@ h1{
   height: 400px;
   width: 400px;
   font-family: Helvetica;
-  color: #CADBC0;
+  color: var(--tea-green);
   background: rgba(0, 0, 0, 0.14);
   padding: 30px 0px;
 }
@@ -48,9 +57,9 @@ h1{
   outline:none;
 }
 .box button{
-  background:#CADBC0;
+  background:var(--tea-green);
   border:0;
-  color:#022B3A;
+  color:var(--main-blue);
   padding:10px;
   font-size:20px;
   width:330px;
@@ -59,10 +68,10 @@ h1{
   cursor:pointer;
 }
 .box button:hover {
-  background: #A8C397;
+  background: var(--tea-green-light);
 }
 .box button:active{
-  background:#F97068;
+  background:var(--pink-bittersweet);
 }
 .box p{
   font-size:14px;
@@ -75,9 +84,21 @@ h1{
 
 
 a:link,a:visited , a:hover, a:active{
-  color: #F97068;
+  color: var(--pink-bittersweet);
   text-decoration: none;
 }
 .red-error{
   color:red;
+}
+
+aside {
+  background-color: var(--tea-green);
+}
+
+aside li {
+  color: var(--main-blue);
+}
+
+aside .current_page {
+  background: var(--main-blue);
 }
