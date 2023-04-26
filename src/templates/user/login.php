@@ -11,9 +11,9 @@
     <div class="inner-container">
         <div class="box">
             <h1>Login</h1>
-            <form action="../actions/action_login.php" method="post">
-                <input type="text" id="username" name="username" placeholder="username"/>
-                <input type="text id="password" name="password" placeholder="password"/>
+            <form action="../actions/action_login.php" method="post" required>
+                <input type="text" id="username" name="username" placeholder="username" autocomplete="off" required/>
+                <input type="password" id="password" name="password" placeholder="password" required/>
                  <button type="submit" value="Next">Login</button>
             </form>
         <p>Don't have an account? <a href="/pages/register.php">Register</a></p>

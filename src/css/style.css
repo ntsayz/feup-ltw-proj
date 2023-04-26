@@ -1,10 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400;600&display=swap');
+
+* {
+  font-family: 'Roboto Mono', monospace  !important;
+}
+
 body{
   padding:0;
   margin:0;
-  background-color: rgb(250, 130, 130);
+  background-color: #022B3A;
+  font-family: 'Roboto Mono', monospace;
 }
 .inner-container {
   background-color: white;
+}
+h1{
+  color:#CADBC0;
 }
 
 .box {
@@ -15,7 +25,7 @@ body{
   height: 400px;
   width: 400px;
   font-family: Helvetica;
-  color: #fff;
+  color: #CADBC0;
   background: rgba(0, 0, 0, 0.14);
   padding: 30px 0px;
 }
@@ -38,9 +48,9 @@ body{
   outline:none;
 }
 .box button{
-  background:#a22f2f;
+  background:#CADBC0;
   border:0;
-  color:#fff;
+  color:#022B3A;
   padding:10px;
   font-size:20px;
   width:330px;
@@ -48,8 +58,11 @@ body{
   display:block;
   cursor:pointer;
 }
+.box button:hover {
+  background: #A8C397;
+}
 .box button:active{
-  background:#a22f2f;
+  background:#F97068;
 }
 .box p{
   font-size:14px;
@@ -58,6 +71,12 @@ body{
 .box p span{
   cursor:pointer;
   color:#666;
+}
+
+
+a:link,a:visited , a:hover, a:active{
+  color: #F97068;
+  text-decoration: none;
 }
 .red-error{
   color:red;

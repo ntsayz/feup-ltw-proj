@@ -10,16 +10,16 @@
 	
     <div class="inner-container">
         <div class="box">
-            <h1>Register</h1>
-            <form action="../actions/action_register.php" method="post">
-                <input type="text" id="full_name" name="full_name" placeholder="Full Name"/>
-                <input type="text" id="email" name="email" placeholder="Email"/>
-                <input type="text" id="username" name="username" placeholder="Username"/>
-                <input type="password" id="password" name="password" placeholder="Password"/>
+            <h1>Registration</h1>
+            <form action="../actions/action_register.php" method="post" required>
+                <input type="text" id="full_name" name="full_name" placeholder="Full Name" autocomplete="off" required/>
+                <input type="text" id="email" name="email" placeholder="Email" required/>
+                <input type="text" id="username" name="username" placeholder="Username" autocomplete="off" required/>
+                <input type="password" id="password" name="password" placeholder="Password" required/>
                 <input type="text" id="ref_code" name="ref_code" placeholder="Referral Code"/>
                 <button type="submit" value="Next">Register</button>
             </form>
-        <p>Already have an account? <a>Login</a></p>
+        <p>Already have an account? <a href="/pages/login.php">Login</a></p>
     </div>
   </div>
   <p id="error_messages">
