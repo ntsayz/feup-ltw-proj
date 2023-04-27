@@ -45,6 +45,21 @@ header {
   main {
     width: 100%;
   }
+  .w_aside {
+    margin-left: 20%;
+  }
+  main .container h2 {
+    clear: both;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  main .container p {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  
+  
   
   @media screen and (max-width: 600px) {
     .container {

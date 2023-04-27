@@ -1,5 +1,5 @@
 <header>
-    <h1>TMS</h1>
+    <h1 id="title">TMS</h1>
   <div class="user">
     <a href="/pages/profile.php">
       <img id="profile-icon" src="/images/user.png" alt="Profile Icon">

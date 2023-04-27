@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Main Page</title>
+    <title>Settings (Admin)</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
@@ -10,13 +10,12 @@
 </head>
 
 <body>
-<?php $currentPage = 'home'; ?>
+<?php $currentPage = 'admin_set'; ?>
 <?php require(__DIR__.'/../common/header.php'); ?>
     <div class="wrapper">
         
         <?php require(__DIR__.'/../common/sidebar.php'); ?>
-        <main class="container w_aside">
-            <h2>Ola</h2>
+        <main class="container">
         </main>
     </div>
 

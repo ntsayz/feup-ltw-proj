@@ -2,9 +2,12 @@
 
 :root{
   --main-blue: #022B3A;
+  --main-blue-darker: #011D27;
   --tea-green: #CADBC0;
   --tea-green-light: #A8C397;
   --pink-bittersweet: #F97068;
+  --pink-melon: #FCB4B1;
+  
 }
 * {
   font-family: 'Roboto Mono', monospace  !important;
@@ -16,14 +19,14 @@ header {
 body{
   padding:0;
   margin:0;
-  background-color: var(--main-blue);
+  background-color: var(--tea-green);
   font-family: 'Roboto Mono', monospace;
 }
 .inner-container {
   background-color: white;
 }
-h1{
-  color:var(--tea-green);
+#title{
+  color:var(--tea-green) !important;
 }
 
 .box {
@@ -82,9 +85,7 @@ h1{
   color:#666;
 }
 
-
 a:link,a:visited , a:hover, a:active{
-  color: var(--pink-bittersweet);
   text-decoration: none;
 }
 .red-error{
@@ -92,13 +93,27 @@ a:link,a:visited , a:hover, a:active{
 }
 
 aside {
-  background-color: var(--tea-green);
+  background-color: var(--main-blue-darker);
 }
+aside a {
+  color: var(--tea-green);
+}
+
 
 aside li {
   color: var(--main-blue);
+  text-align: center;
 }
 
 aside .current_page {
-  background: var(--main-blue);
+  background: #033B4F;
 }
+
+aside ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  padding-left: 0;
+}
+

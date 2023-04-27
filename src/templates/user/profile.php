@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<h1>You're logged in as <?php echo htmlentities($_SESSION['username']) ?></h1>
+<h1>You're logged in as <?php echo htmlentities($_SESSION['username']) ?> and you are a/an <?php echo htmlentities($_SESSION['user_type']) ?></h1>
             <div class="content box"> 
                 <form method="post" action="../actions/action_logout.php">
                     <button type="submit">Log out</button>

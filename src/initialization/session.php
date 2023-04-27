@@ -1,9 +1,13 @@
+
+
 <?php
+    require_once(__DIR__.'/../database/user.php');
    session_start();
 
    function set_current_user($userID, $username) {
     	$_SESSION['username'] = $username;
     	$_SESSION['id'] = $userID;
+        set_user_type($username);
    }
 
    function get_user_id() {
@@ -13,6 +17,10 @@
            return null;
        }
 
+   }
+
+   function set_user_type($username){
+    $_SESSION['user_type'] = get_user_type($username);
    }
 
    function get_username() {

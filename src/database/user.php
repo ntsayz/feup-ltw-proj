@@ -32,6 +32,7 @@
 }
 
 
+
    function username_exists($username) {
     global $dbh;
     try {
@@ -86,18 +87,17 @@
 
 
   function get_user_type($username){
-
+    global $dbh;
     try {
-
       $stmt = $dbh->prepare('SELECT user_type FROM users WHERE username = ?');
       $stmt->execute(array($username));
       if($row = $stmt->fetch()) {
-        return $row['id'];
+        return $row['user_type'];
     }
   	  
     }catch(PDOException $e) {
       
-      return -1;
+      return "error getting user type";
     }
         
   }
