@@ -23,8 +23,13 @@ header {
   .container {
     display: flex;
     flex-wrap: wrap;
-    padding-top: 50px; /* add padding for the header */
+    padding-top: 50px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: left;
   }
+
+  
   
   .sidebar {
     position: fixed;
@@ -44,6 +49,7 @@ header {
   
   main {
     width: 100%;
+    max-width: 90%;
   }
   .w_aside {
     margin-left: 20%;
@@ -67,8 +73,8 @@ header {
     }
   
     .sidebar {
-      width: 100%;
-      margin-top: 50px; /* add margin-top equal to the header's height */
+      width: 100%; 
+      margin-top: 50px; 
     }
   
     .content {
@@ -115,9 +121,25 @@ header {
       display: none;
     }
   }
+
+
+
+
+
+  /*FAQS*/
   
+  .faq-title {
+    cursor: pointer;
+    text-decoration: underline;
+}
   
-  
-  
+  .faq-answer {
+    display: none;
+}
+
+  .faq-answer-show {
+      display: block;
+  }
+
   
 

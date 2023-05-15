@@ -10,10 +10,9 @@
 </head>
 
 <body>
-<?php $currentPage = 'faqs'; ?>
-<?php require(__DIR__.'/../common/header.php'); ?>
+    <?php $currentPage = 'faqs'; ?>
+    <?php require(__DIR__.'/../common/header.php'); ?>
     <div class="wrapper">
-        
         <?php require(__DIR__.'/../common/sidebar.php'); ?>
         <main class="container w_aside">
             <?php
@@ -22,24 +21,25 @@
             $faqs = get_faqs();
             // Loop through the faqs and display the question and answer
             foreach ($faqs as $faq) {
-                echo '<h2>' . $faq['question'] . '</h2>';
-                echo '<p>' . $faq['answer'] . '</p>';
+                echo '<h2 class="faq-title">' . $faq['question'] . '</h2>';
+                echo '<p class="faq-answer">' . $faq['answer'] . '</p>';
             }
             ?>
             <?php if($_SESSION['user_type'] === 'admin') { ?>
-                <h2>Submit a question</h2>
+            <h2>Submit a question</h2>
             <form id="submit_faq" action="../actions/action_submit_faq.php" method="post" required>
-            <textarea id="question" name="question" form="submit_faq" placeholder="Question" rows="4" cols="20" required></textarea>
-            <textarea id="answer" name="answer" form="submit_faq" placeholder="Answer"  rows="4" cols="20" required></textarea>
-                 <button type="submit" value="Next">Submit</button>
+                <textarea id="question" name="question" form="submit_faq" placeholder="Question" rows="4" cols="20"
+                    required></textarea>
+                <textarea id="answer" name="answer" form="submit_faq" placeholder="Answer" rows="4" cols="20"
+                    required></textarea>
+                <button type="submit" value="Next">Submit</button>
             </form>
-    <?php } ?>
-            
+            <?php } ?>
         </main>
-
     </div>
 
     <script src="/scripts/script.js"></script>
 </body>
 
 </html>
+
