@@ -21,9 +21,17 @@
             $faqs = get_faqs();
             // Loop through the faqs and display the question and answer
             foreach ($faqs as $faq) {
-                echo '<h2 class="faq-title">' . $faq['question'] . '</h2>';
+                echo '<div class="faq-item">';
+                echo '<h2 class="faq-title" id="' . $faq['id'] . '">' . $faq['question'] . '</h2>';
+                echo '<div class="answer-container">';
                 echo '<p class="faq-answer">' . $faq['answer'] . '</p>';
+                echo '</div>';
+                if($_SESSION['user_type'] === 'admin') {
+                    echo '<button class="delete-button" data-id="' . $faq['id'] . '">Delete</button>';
+                }
+                echo '</div>';
             }
+            
             ?>
             <?php if($_SESSION['user_type'] === 'admin') { ?>
             <h2>Submit a question</h2>
@@ -42,4 +50,5 @@
 </body>
 
 </html>
+
 

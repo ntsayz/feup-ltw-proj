@@ -33,5 +33,28 @@ function submit_faq($question, $answer){
     }
 }
 
+function update_faq($id, $question, $answer){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('UPDATE faqs SET question = ?, answer = ? WHERE id = ?');
+        $stmt->execute(array($question, $answer, $id));
+        return 0;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
+
+function delete_faq($id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('DELETE FROM faqs WHERE id = ?');
+        $stmt->execute(array($id));
+        return 0;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
 
 ?>
