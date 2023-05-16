@@ -3,7 +3,7 @@
 //     ---------                HOME PAGE FUNCTIONS     --------------
 
 // toggle to show and hide the sidebar
-const sidebarToggle = document.getElementById('sidebar-toggle');
+const sidebarToggle = document.getElementById('sidebar-toggle-button');
 const sidebar = document.querySelector('.sidebar');
 sidebarToggle.addEventListener('click', () => {
   sidebar.classList.toggle('visible');

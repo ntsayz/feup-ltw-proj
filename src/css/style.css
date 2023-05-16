@@ -100,6 +100,9 @@ a:link,a:visited , a:hover, a:active{
   color:red;
 }
 
+
+/*   -------- SIDEBAR  --------- */
+
 aside {
   background-color: var(--main-blue-darker);
 }
@@ -115,6 +118,10 @@ aside li {
 
 aside .current_page {
   background: #033B4F;
+}
+
+aside li:hover {
+  background: #102e38;
 }
 
 aside ul {

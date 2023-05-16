@@ -15,7 +15,7 @@
     <?php require(__DIR__.'/../common/header.php'); ?>
     <div class="wrapper">
         <?php require(__DIR__.'/../common/sidebar.php'); ?>
-        <main class="container w_aside">
+        <div class="container w_aside">
             <?php
             require_once(__DIR__.'/../../database/faqs.php');
             // Get the faqs data from the database
