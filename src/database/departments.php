@@ -16,10 +16,10 @@ function get_departments(){
 function get_department_by_id($id){
     global $dbh;
     try {
-        $stmt = $dbh->prepare('SELECT * FROM departments WHERE id = ?');
+        $stmt = $dbh->prepare('SELECT name FROM departments WHERE id = ?');
         $stmt->execute(array($id));
         $department = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $department;
+        return $department['name'];
     } catch(PDOException $e) {
         return -1;
     }

@@ -7,8 +7,12 @@
   --tea-green-light: #A8C397;
   --pink-bittersweet: #F97068;
   --pink-melon: #FCB4B1;
-  
+  --white: #f0f0f0;
+  --almost-white: #e5e5e5;
+  --blue-gradient: linear-gradient(90deg, rgba(2,0,36,1) 77%, rgba(9,9,121,1) 100%);
+  --bg-blue-gradient: linear-gradient(160deg, #000529 0%, #80D0C7 100%);
 }
+
 * {
   font-family: 'Roboto Mono', monospace  !important;
 }
@@ -19,7 +23,8 @@ header {
 body{
   padding:0;
   margin:0;
-  background-color: var(--tea-green);
+  background: var(--main-blue-darker);
+  color:var(--tea-green);
   font-family: 'Roboto Mono', monospace;
 }
 body.with-aside {
@@ -50,8 +55,11 @@ body.without-aside {
   max-height: 90%; /* height is auto to adjust to the content inside */
   padding: 2em; /* added padding to prevent content from sticking to the edges */
   font-family: Helvetica;
-  color: var(--tea-green);
-  background: rgba(0, 0, 0, 0.14);
+  color: var(--main-blue);
+  box-shadow: 1px 1px 3px 1px rgb(0, 0, 0);
+  background: var(--white);
+  border-radius: 25px;
+
   box-sizing: border-box; /* box-sizing to border-box so padding is included in the width and height */
   margin: 0 1em; /* add some margin between boxes */
 }
@@ -72,8 +80,10 @@ body.without-aside {
   width: 50%; /* adjust the width to 80% for responsiveness */
   margin:20px auto;
   padding:15px;
-  background:rgba(5,1,2,1);
-  color:#fff;
+  border-radius: 5px;
+  background: rgb(220,220,220);
+  box-shadow: 1px 1px 1px 1px gray;
+  color:var(--main-blue-darker);
   border:0;
   box-sizing: border-box; /* box-sizing to border-box so padding is included in the width */
 }
@@ -83,11 +93,12 @@ body.without-aside {
 }
 
 .box button{
-  background:var(--tea-green);
+  background:var(--main-blue-darker);
   border:0;
-  color:var(--main-blue);
+  color:var(--tea-green);
   padding:10px;
   font-size:20px;
+  border-radius: 5px;
   width: 50%; /* adjust the width to 90% for responsiveness */
   margin:20px auto;
   display:block;
@@ -96,7 +107,7 @@ body.without-aside {
 }
 
 .box button:hover {
-  background: var(--tea-green-light);
+  background: var(--main-blue);
 }
 
 .box button:active{
@@ -131,7 +142,7 @@ body.without-aside {
 
 a:link,a:visited , a:hover, a:active{
   text-decoration: none;
-  color:var(--tea-green-light);
+  color:var(--main-blue-darker);
 }
 .red-error{
   color:red;
@@ -142,6 +153,7 @@ a:link,a:visited , a:hover, a:active{
 
 aside {
   background-color: var(--main-blue-darker);
+  color:var(--tea-green);
 }
 aside a {
   color: var(--tea-green);
@@ -149,7 +161,7 @@ aside a {
 
 
 aside li {
-  color: var(--main-blue);
+  color:var(--tea-green);
   text-align: center;
 }
 
@@ -167,5 +179,32 @@ aside ul {
 }
 li {
   padding-left: 0;
+}
+
+.very-small-text {
+  font-size: 0.8em;
+}
+.main-blue-button{
+  background:var(--main-blue);
+  border:0;
+  color:var(--tea-green);
+  padding:10px;
+  font-size:20px;
+  width: 50%; /* adjust the width to 90% for responsiveness */
+  margin:20px auto;
+  display:block;
+  box-sizing: border-box; /* box-sizing to border-box so padding is included in the width */
+}
+
+.ticket-blue-button{
+  background:var(--main-blue);
+  border:0;
+  color:var(--tea-green);
+  padding:10px;
+  font-size:20px;
+  width: 90%;
+  margin:20px auto;
+  display:block;
+  box-sizing: border-box; /* box-sizing to border-box so padding is included in the width */
 }
 
