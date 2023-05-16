@@ -204,6 +204,7 @@ main .container p {
 }
 
 .overlay-content {
+  user-select:text;
   background: var(--tea-green);
   padding: 20px;
   border-radius: 10px;
@@ -232,13 +233,18 @@ main .container p {
 
 .ticket-overlay-buttons{
   margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   justify-content:end;
   flex-wrap: wrap;
-  margin-right: 3px;
 }
 .ticket-overlay-buttons button{
   border-radius: 10px;
+}
+
+.ticket-overlay-buttons button:hover{
+  cursor: pointer;
 }
 
 

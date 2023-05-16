@@ -39,6 +39,18 @@ function get_tickets_tracked_by_user(){
         return -1;
     }
 }
+//function to get ticket records
+function get_ticket_records($ticket_id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT * FROM ticket_records WHERE ticket_id = ?');
+        $stmt->execute(array($ticket_id));
+        $ticket_records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $ticket_records;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
 
 
 ?>

@@ -51,7 +51,7 @@ body.without-aside {
 
 .box {
   max-width: 45%; /* set max-width to 45% for responsiveness */
-  min-width: 30%; /* set min-width to 30% */
+  min-width: 50%; /* set min-width to 30% */
   max-height: 90%; /* height is auto to adjust to the content inside */
   padding: 2em; /* added padding to prevent content from sticking to the edges */
   font-family: Helvetica;
@@ -77,7 +77,7 @@ body.without-aside {
 
 .box input{
   display:block;
-  width: 50%; /* adjust the width to 80% for responsiveness */
+  width: 70%; /* adjust the width to 80% for responsiveness */
   margin:20px auto;
   padding:15px;
   border-radius: 5px;
@@ -201,10 +201,34 @@ li {
   border:0;
   color:var(--tea-green);
   padding:10px;
+  padding-right: 10px;
   font-size:20px;
   width: 90%;
   margin:20px auto;
   display:block;
   box-sizing: border-box; /* box-sizing to border-box so padding is included in the width */
 }
+
+.ticket-blue-button:hover {
+  background: var(--main-blue-darker);
+}
+
+.ticket-records, .ticket-conversations {
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: var(--tea-green-light);
+  width: 100%;
+  margin: 10px;
+  padding: 15px;
+}
+
+.ticket-records-messages, .ticket-conversations-messages {
+  border-radius: 10px;
+  background-color: var(--tea-green);
+  overflow-y: auto;
+  
+}
+
+
+
 

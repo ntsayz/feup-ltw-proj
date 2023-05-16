@@ -96,6 +96,7 @@ slider.addEventListener('mousemove', (e) => {
 
 var ticketBoxes = document.querySelectorAll('.ticket-box');
 var overlays = document.querySelectorAll('.overlay');
+var overlays1 = document.querySelectorAll('.overlay');
 
 ticketBoxes.forEach(function(ticketBox) {
     ticketBox.addEventListener('click', function() {
@@ -108,8 +109,10 @@ ticketBoxes.forEach(function(ticketBox) {
 });
 
 overlays.forEach(function(overlay) {
-    overlay.addEventListener('click', function() {
-        overlay.style.display = 'none';
+    overlay.addEventListener('click', function(event) {
+        if (event.target == overlay) {
+            overlay.style.display = 'none';
+        }
     });
 });
 /* 
