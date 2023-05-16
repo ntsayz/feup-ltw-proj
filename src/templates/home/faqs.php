@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="/css/positioning.css">
 </head>
 
-<body>
+<body class="with-aside">
+
     <?php $currentPage = 'faqs'; ?>
     <?php require(__DIR__.'/../common/header.php'); ?>
     <div class="wrapper">
