@@ -102,5 +102,44 @@
         
   }
 
+  // function to change user username
+  function change_username($username, $new_username){
+    global $dbh;
+    try {
+      $stmt = $dbh->prepare('UPDATE users SET username = ? WHERE username = ?');
+      $stmt->execute(array($new_username, $username));
+      return 0;
+    } catch(PDOException $e) {
+      return -1;
+    }
+  }
+
+  // function to change user password
+  function change_password($username, $new_password){
+    global $dbh;
+    $hashed_password = hash('sha256', $new_password);
+    try {
+      $stmt = $dbh->prepare('UPDATE users SET password = ? WHERE username = ?');
+      $stmt->execute(array($hashed_password, $username));
+      return 0;
+    } catch(PDOException $e) {
+      return -1;
+    }
+  }
+
+   // function to change user email
+   function change_email($username, $email){
+    global $dbh;
+    try {
+      $stmt = $dbh->prepare('UPDATE users SET email = ? WHERE username = ?');
+      $stmt->execute(array($new_username, $email));
+      return 0;
+    } catch(PDOException $e) {
+      return -1;
+    }
+  }
+
+  
+
 
 ?>
