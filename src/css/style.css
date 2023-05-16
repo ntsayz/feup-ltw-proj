@@ -7,8 +7,12 @@
   --tea-green-light: #A8C397;
   --pink-bittersweet: #F97068;
   --pink-melon: #FCB4B1;
-  
+  --white: #f0f0f0;
+  --almost-white: #e5e5e5;
+  --blue-gradient: linear-gradient(90deg, rgba(2,0,36,1) 77%, rgba(9,9,121,1) 100%);
+  --bg-blue-gradient: linear-gradient(160deg, #000529 0%, #80D0C7 100%);
 }
+
 * {
   font-family: 'Roboto Mono', monospace  !important;
 }
@@ -19,7 +23,8 @@ header {
 body{
   padding:0;
   margin:0;
-  background-color: var(--tea-green);
+  background: var(--main-blue-darker);
+  color:var(--tea-green);
   font-family: 'Roboto Mono', monospace;
 }
 body.with-aside {
@@ -30,24 +35,33 @@ body.without-aside {
   background-color: var(--main-blue-darker);
 }
 
-.inner-container {
-  background-color: white;
+.box-container {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100vh;
+  padding: 2em;
+  box-sizing: border-box;
 }
+
 #title{
   color:var(--tea-green) !important;
 }
 
 .box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 400px;
-  width: 400px;
+  max-width: 45%; /* set max-width to 45% for responsiveness */
+  min-width: 50%; /* set min-width to 30% */
+  max-height: 90%; /* height is auto to adjust to the content inside */
+  padding: 2em; /* added padding to prevent content from sticking to the edges */
   font-family: Helvetica;
-  color: var(--tea-green);
-  background: rgba(0, 0, 0, 0.14);
-  padding: 30px 0px;
+  color: var(--main-blue);
+  box-shadow: 1px 1px 3px 1px rgb(0, 0, 0);
+  background: var(--white);
+  border-radius: 25px;
+
+  box-sizing: border-box; /* box-sizing to border-box so padding is included in the width and height */
+  margin: 0 1em; /* add some margin between boxes */
 }
 
 .box h1{
@@ -55,46 +69,80 @@ body.without-aside {
   margin:30px 0;
   font-size:30px;
 }
+.box h2{
+  text-align:center;
+  margin:30px 0;
+  font-size:30px;
+}
+
 .box input{
   display:block;
-  width:300px;
+  width: 70%; /* adjust the width to 80% for responsiveness */
   margin:20px auto;
   padding:15px;
-  background:rgba(5,1,2,1);
-  color:#fff;
+  border-radius: 5px;
+  background: rgb(220,220,220);
+  box-shadow: 1px 1px 1px 1px gray;
+  color:var(--main-blue-darker);
   border:0;
+  box-sizing: border-box; /* box-sizing to border-box so padding is included in the width */
 }
+
 .box input:focus,.box input:active,.box button:focus,.box button:active{
   outline:none;
 }
+
 .box button{
-  background:var(--tea-green);
+  background:var(--main-blue-darker);
   border:0;
-  color:var(--main-blue);
+  color:var(--tea-green);
   padding:10px;
   font-size:20px;
-  width:330px;
+  border-radius: 5px;
+  width: 50%; /* adjust the width to 90% for responsiveness */
   margin:20px auto;
   display:block;
   cursor:pointer;
+  box-sizing: border-box; /* box-sizing to border-box so padding is included in the width */
 }
+
 .box button:hover {
-  background: var(--tea-green-light);
+  background: var(--main-blue);
 }
+
 .box button:active{
   background:var(--pink-bittersweet);
 }
+
 .box p{
   font-size:14px;
   text-align:center;
 }
+
 .box p span{
   cursor:pointer;
   color:#666;
 }
 
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  .box {
+    padding: 1em;
+  }
+
+  .box h1{
+    font-size:24px;
+  }
+
+  .box input, .box button {
+    width: 50%; /* adjust the width to 100% on smaller screens */
+  }
+}
+
+
 a:link,a:visited , a:hover, a:active{
   text-decoration: none;
+  color:var(--main-blue-darker);
 }
 .red-error{
   color:red;
@@ -105,6 +153,7 @@ a:link,a:visited , a:hover, a:active{
 
 aside {
   background-color: var(--main-blue-darker);
+  color:var(--tea-green);
 }
 aside a {
   color: var(--tea-green);
@@ -112,7 +161,7 @@ aside a {
 
 
 aside li {
-  color: var(--main-blue);
+  color:var(--tea-green);
   text-align: center;
 }
 
@@ -131,4 +180,55 @@ aside ul {
 li {
   padding-left: 0;
 }
+
+.very-small-text {
+  font-size: 0.8em;
+}
+.main-blue-button{
+  background:var(--main-blue);
+  border:0;
+  color:var(--tea-green);
+  padding:10px;
+  font-size:20px;
+  width: 50%; /* adjust the width to 90% for responsiveness */
+  margin:20px auto;
+  display:block;
+  box-sizing: border-box; /* box-sizing to border-box so padding is included in the width */
+}
+
+.ticket-blue-button{
+  background:var(--main-blue);
+  border:0;
+  color:var(--tea-green);
+  padding:10px;
+  padding-right: 10px;
+  font-size:20px;
+  width: 90%;
+  margin:20px auto;
+  display:block;
+  box-sizing: border-box; /* box-sizing to border-box so padding is included in the width */
+}
+
+.ticket-blue-button:hover {
+  background: var(--main-blue-darker);
+}
+
+.ticket-records, .ticket-conversations {
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: var(--tea-green-light);
+  width: 100%;
+  margin: 10px;
+  padding: 15px;
+}
+
+.ticket-records-messages, .ticket-conversations-messages {
+  border-radius: 10px;
+  background-color: var(--tea-green);
+  overflow-y: auto;
+  
+}
+
+
+
 

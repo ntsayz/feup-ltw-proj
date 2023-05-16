@@ -29,7 +29,38 @@
     }catch(PDOException $e) {
         return -1;
     }
-}
+  }
+
+  //function to get user full name
+  function get_full_name($id) {
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT full_name FROM users WHERE id = ?');
+        $stmt->execute(array($id));
+        if($row = $stmt->fetch()) {
+            return $row['full_name'];
+        }
+
+    }catch(PDOException $e) {
+        return -1;
+    }
+
+  }
+
+  //function to get username by id
+  function get_username_by_id($id) {
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT username FROM users WHERE id = ?');
+        $stmt->execute(array($id));
+        if($row = $stmt->fetch()) {
+            return $row['username'];
+        }
+
+    }catch(PDOException $e) {
+        return -1;
+    }
+  }
 
 
 
@@ -101,6 +132,45 @@
     }
         
   }
+
+  // function to change user username
+  function change_username($username, $new_username){
+    global $dbh;
+    try {
+      $stmt = $dbh->prepare('UPDATE users SET username = ? WHERE username = ?');
+      $stmt->execute(array($new_username, $username));
+      return 0;
+    } catch(PDOException $e) {
+      return -1;
+    }
+  }
+
+  // function to change user password
+  function change_password($username, $new_password){
+    global $dbh;
+    $hashed_password = hash('sha256', $new_password);
+    try {
+      $stmt = $dbh->prepare('UPDATE users SET password = ? WHERE username = ?');
+      $stmt->execute(array($hashed_password, $username));
+      return 0;
+    } catch(PDOException $e) {
+      return -1;
+    }
+  }
+
+   // function to change user email
+   function change_email($username, $new_email){
+    global $dbh;
+    try {
+      $stmt = $dbh->prepare('UPDATE users SET email = ? WHERE username = ?');
+      $stmt->execute(array($new_username, $new_email));
+      return 0;
+    } catch(PDOException $e) {
+      return -1;
+    }
+  }
+
+  
 
 
 ?>
