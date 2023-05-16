@@ -22,6 +22,14 @@ body{
   background-color: var(--tea-green);
   font-family: 'Roboto Mono', monospace;
 }
+body.with-aside {
+  background-color: var(--tea-green);
+}
+
+body.without-aside {
+  background-color: var(--main-blue-darker);
+}
+
 .inner-container {
   background-color: white;
 }
@@ -92,6 +100,9 @@ a:link,a:visited , a:hover, a:active{
   color:red;
 }
 
+
+/*   -------- SIDEBAR  --------- */
+
 aside {
   background-color: var(--main-blue-darker);
 }
@@ -107,6 +118,10 @@ aside li {
 
 aside .current_page {
   background: #033B4F;
+}
+
+aside li:hover {
+  background: #102e38;
 }
 
 aside ul {

@@ -1,64 +1,96 @@
+:root{
+  --main-blue: #022B3A;
+  --main-blue-darker: #011D27;
+  --tea-green: #CADBC0;
+  --tea-green-light: #A8C397;
+  --pink-bittersweet: #F97068;
+  --pink-melon: #FCB4B1;
+  
+}
+
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background-color: #022B3A;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
-    box-sizing: border-box;
-    z-index: 1;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #022B3A;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+#sidebar-toggle-button {
+  display: block;
+  font-size: 1.5em;
+  background-color: transparent;
+  border: none;
+  color: var(--tea-green);
+  cursor: pointer;
+}
   
   .wrapper {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
-  
   .container {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 50px; /* add padding for the header */
-  }
+    padding-top: 50px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto; /* Set height to auto */
+}
+
+
   
-  .sidebar {
-    position: fixed;
-    top: 50px; /* add margin-top equal to the header's height */
-    left: 0;
-    width: 20%;
-    min-height: 100vh;
-    padding: 10px;
-    box-sizing: border-box;
-  }
   
-  .content {
-    flex: 1;
-    margin-left: 20%;
-    width: 80%;
-  }
+.sidebar {
+  display: none;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: auto;
+  min-width: 20%; 
+  height: 100%;
+  z-index: 1;
+  background-color: #022B3A;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.visible {
+  display: block;
+}
+
   
-  main {
-    width: 100%;
-  }
-  .w_aside {
-    margin-left: 20%;
-  }
-  main .container h2 {
-    clear: both;
-    display: block;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  main .container p {
-    margin-top: 0;
-    margin-bottom: 20px;
-  }
-  
+.content {
+  flex: 1;
+  margin-left: auto; /* adjust this value based on your layout */
+}
+
+main {
+  width: 100%;
+  max-width: 90%;
+}
+
+main .container h2 {
+  clear: both;
+  display: block;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+main .container p {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
   
   
   @media screen and (max-width: 600px) {
@@ -67,18 +99,19 @@ header {
     }
   
     .sidebar {
-      width: 100%;
-      margin-top: 50px; /* add margin-top equal to the header's height */
-    }
-  
-    .content {
-      margin-left: 0;
-      width: 100%;
-    }
+      width: auto;
+  }
+  .sidebar.visible {
+    min-width: 70%;
+  }
 
-    .sidebar {
-        display: none;
-      }
+  .content {
+    flex: 1;
+    width: 80%;
+    margin-left: 20%;
+  }
+
+   
   }
   
   #profile-icon {
@@ -98,26 +131,72 @@ header {
     position: fixed;
     top: 50px;
     left: 0;
-    width: 80%;
+    width: 20%;
     height: 100%;
     z-index: 1;
-    background-color: #fff;
+    background-color: #022B3A;
     overflow-y: auto;
     transition: transform 0.3s ease-in-out;
   }
+  
 
   #sidebar-toggle {
     display: block;
   }
   
   @media only screen and (min-width: 600px) {
-    #sidebar-toggle {
-      display: none;
-    }
+    .sidebar {
+      width: auto; 
+      min-width: 20%;
   }
+
+  .content {
+      margin-left: auto; 
+      width: 80%; 
+  }
+    
+
+  }
+
   
+
+
+
+
+
+  /*FAQS*/
   
-  
-  
+.faq-title {
+  cursor: pointer;
+}
+.faq-title:hover {
+  text-decoration: underline;
+}
+
+.faq-answer {
+    display: none;
+}
+
+.faq-item {
+  position: relative;
+  overflow: auto;
+  padding-right: 50px; /* adjust as needed */
+}
+/* //q: how do i make .delete-button be on the right*/
+.delete-button {
+  margin-left: 10px;
+}
+
+
+.answer-container {
+  position: relative;
+}
+
+.faq-answer-show {
+  display: block;
+}
+
+
+
   
 
