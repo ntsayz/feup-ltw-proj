@@ -29,7 +29,38 @@
     }catch(PDOException $e) {
         return -1;
     }
-}
+  }
+
+  //function to get user full name
+  function get_full_name($id) {
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT full_name FROM users WHERE id = ?');
+        $stmt->execute(array($id));
+        if($row = $stmt->fetch()) {
+            return $row['full_name'];
+        }
+
+    }catch(PDOException $e) {
+        return -1;
+    }
+
+  }
+
+  //function to get username by id
+  function get_username_by_id($id) {
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT username FROM users WHERE id = ?');
+        $stmt->execute(array($id));
+        if($row = $stmt->fetch()) {
+            return $row['username'];
+        }
+
+    }catch(PDOException $e) {
+        return -1;
+    }
+  }
 
 
 
@@ -128,11 +159,11 @@
   }
 
    // function to change user email
-   function change_email($username, $email){
+   function change_email($username, $new_email){
     global $dbh;
     try {
       $stmt = $dbh->prepare('UPDATE users SET email = ? WHERE username = ?');
-      $stmt->execute(array($new_username, $email));
+      $stmt->execute(array($new_username, $new_email));
       return 0;
     } catch(PDOException $e) {
       return -1;

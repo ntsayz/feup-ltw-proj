@@ -11,11 +11,15 @@
 
 <body class="with-aside">
 
+
     <?php $currentPage = 'faqs'; ?>
     <?php require(__DIR__.'/../common/header.php'); ?>
     <div class="wrapper">
         <?php require(__DIR__.'/../common/sidebar.php'); ?>
+
+        
         <div class="container w_aside">
+        <h1>Frequently Asked Questions</h1>
             <?php
             require_once(__DIR__.'/../../database/faqs.php');
             // Get the faqs data from the database

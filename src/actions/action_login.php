@@ -13,7 +13,7 @@ if(($user_id = check_login($_POST['username'], $_POST['password'])) != -1){
 	// Redirect the user to the home_page.php file	
 	header("Location: $home_page_url");	
 } else {
-	$_SESSION['ERROR'] = 'Incorrect username or password '.$user_id;
+	$_SESSION['ERROR'] = 'Incorrect username or password ';
 }
 
 ?>
