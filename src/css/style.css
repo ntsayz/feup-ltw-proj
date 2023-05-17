@@ -218,10 +218,10 @@ li {
   border-radius: 10px;
   background-color: var(--tea-green-light);
   width: 100%;
+  max-height: 400px;
   margin: 10px;
   padding: 15px;
-  max-height: 200px; /* Set a maximum height for the scrollable area */
-  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .ticket-records-messages,
@@ -229,7 +229,9 @@ li {
   border-radius: 10px;
   background-color: var(--tea-green);
   overflow-y: auto;
-  max-height: 200px; /* Set a maximum height for the scrollable area */
+  box-sizing: border-box;
+  max-height: auto; /* Set a maximum height for the scrollable area */
+  max-width: 90%;
 }
 
 

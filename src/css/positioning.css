@@ -191,7 +191,7 @@ main .container p {
   overflow: hidden; /* Hide overflowing content */
   text-overflow: ellipsis; /* Truncate text if it overflows */
   white-space: nowrap; /* Prevent line breaks */
-  cursor: pointer;
+  cursor:grab;
 }
 .overlay {
   color: var(--main-blue-darker);
@@ -213,16 +213,16 @@ main .container p {
   background: var(--tea-green);
   padding: 20px;
   border-radius: 10px;
-  width: 70%;
-  max-width: 800px; /* Set a maximum width for the overlay content */
+  width: 80%;
   height: 80%;
-  max-height: 600px; /* Set a maximum height for the overlay content */
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  overflow-y: auto; /* Enable scrolling within the overlay */
 }
+
 
 
 
@@ -257,7 +257,6 @@ main .container p {
 
 
 .ticket-box:hover {
-  cursor: pointer;
   background-color: var(--tea-green-light);
   transition: 0.3s;
 }

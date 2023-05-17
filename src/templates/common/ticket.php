@@ -8,9 +8,10 @@ require_once(__DIR__.'/../../database/departments.php');
 
 <div id="overlay-<?php echo $ticket['id'] ?>" class="overlay">
     <div class="overlay-content">
-        <h1><?php echo htmlentities($ticket['title']) ?></h1>
+        <h2><?php echo htmlentities($ticket['title']) ?></h2>
         <p><?php echo htmlentities($ticket['description']) ?></p>
-
+        
+        
         <div class="ticket-records">
             <h2>Ticket Records</h2>
             <div class="ticket-records-messages">
@@ -59,5 +60,6 @@ require_once(__DIR__.'/../../database/departments.php');
             <p>Created by <?php echo htmlentities(get_username_by_id($ticket['created_by'])) ?></p>|
             <p>Department: <?php echo htmlentities(get_department_by_id($ticket['department_id'])) ?></p>
         </div>
+        
     </div>
 </div>
