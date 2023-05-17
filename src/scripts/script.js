@@ -115,6 +115,19 @@ overlays.forEach(function(overlay) {
         }
     });
 });
+
+
+function openNewTicketOverlay() {
+    document.getElementById('new-ticket-overlay').style.display = 'flex';
+}
+
+function openTicketOverlay(ticketId) {
+    const overlay = document.getElementById(`overlay-${ticketId}`);
+    if (overlay) {
+        overlay.style.display = 'flex';
+    }
+}
+
 /* 
 
 <?php

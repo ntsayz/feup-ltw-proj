@@ -48,9 +48,10 @@ CREATE TABLE tickets (
     description TEXT NOT NULL,
     priority INTEGER CHECK(priority BETWEEN 1 AND 5),
     status_id INTEGER REFERENCES status(id) ON DELETE CASCADE,
-    created_by INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    created_by INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    assigned_to INTEGER REFERENCES users(id) ON DELETE CASCADE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    department_id INTEGER NOT NULL REFERENCES departments(id) ON DELETE CASCADE
+    department_id INTEGER REFERENCES departments(id) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS hashtags;
@@ -70,11 +71,20 @@ CREATE TABLE ticket_hashtag (
 
 DROP TABLE IF EXISTS ticket_status;
 
+
 CREATE TABLE ticket_status (
     ticket_id INTEGER REFERENCES tickets(id),
     status_id INTEGER REFERENCES status(id),
     PRIMARY KEY(ticket_id, status_id)
 );
+
+DROP TABLE IF EXISTS ticket_tracking;
+CREATE TABLE ticket_tracking (
+    ticket_id INTEGER REFERENCES tickets(id),
+    user_id INTEGER REFERENCES users(id),
+    PRIMARY KEY(ticket_id, user_id)
+);
+
 
 DROP TABLE IF EXISTS faqs;
 

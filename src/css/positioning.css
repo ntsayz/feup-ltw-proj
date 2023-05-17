@@ -175,42 +175,48 @@ main .container p {
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+  -webkit-overflow-scrolling: touch;
 }
+
 
 .ticket-box {
-    flex: 0 0 auto;
-    width: 200px;  /* This should be equal to the height to make the box a square */
-    margin: 10px 10px;
-    padding: 10px;
-    border-radius: 15px;
-    color: var(--main-blue-darker);
-    box-shadow: 1px 1px 5px 1px gray;
-     background: var(--tea-green);
-    
+  flex: 0 0 auto;
+  width: 200px;
+  margin: 10px 10px;
+  padding: 10px;
+  border-radius: 15px;
+  color: var(--main-blue-darker);
+  box-shadow: 1px 1px 5px 1px gray;
+  background: var(--tea-green);
+  overflow: hidden; /* Hide overflowing content */
+  text-overflow: ellipsis; /* Truncate text if it overflows */
+  white-space: nowrap; /* Prevent line breaks */
+  cursor: pointer;
 }
-
 .overlay {
-  color:var(--main-blue-darker);
+  color: var(--main-blue-darker);
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
   display: none;
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(5px);
+  overflow-y: auto; /* Enable scrolling within the overlay */
 }
 
 .overlay-content {
-  user-select:text;
+  user-select: text;
   background: var(--tea-green);
   padding: 20px;
   border-radius: 10px;
   width: 70%;
+  max-width: 800px; /* Set a maximum width for the overlay content */
   height: 80%;
-  max-width: auto;
+  max-height: 600px; /* Set a maximum height for the overlay content */
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -233,18 +239,18 @@ main .container p {
   margin-left: 10px;
 }
 
-.ticket-overlay-buttons{
+.ticket-overlay-buttons {
   margin-top: auto;
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  justify-content:end;
+  justify-content: flex-end;
   flex-wrap: wrap;
 }
-.ticket-overlay-buttons button{
+
+.ticket-overlay-buttons button {
   border-radius: 10px;
 }
-
 .ticket-overlay-buttons button:hover{
   cursor: pointer;
 }
@@ -307,7 +313,7 @@ main .container p {
   border-radius: 10px;
   width: auto;
   height: auto;
-  max-width: auto;
+  max-width: 400px; /* Set a maximum width for the form overlay */
   text-align: left;
   display: flex;
   flex-direction: column;

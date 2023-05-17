@@ -13,8 +13,7 @@ require_once(__DIR__.'/../database/tickets.php');
     if (($ticket_id = submit_ticket($_POST['title'], $_POST['description'], $_POST['priority'], $status_id, $user_id, $_POST['department'])) != -1) {
         $base_url = 'http://' . $_SERVER['HTTP_HOST'];
         $current_url_path = dirname($_SERVER['REQUEST_URI']);
-        $page_url = $base_url . $current_url_path . '/../pages/home_page.php';
-        
+        $page_url = $base_url . $current_url_path . '/../pages/ticket.php?ticket_id=' . $ticket_id;
         $_SESSION['SUCCESS'] = 'Ticket submitted successfully';
         header("Location: $page_url");
     } else {

@@ -213,20 +213,23 @@ li {
   background: var(--main-blue-darker);
 }
 
-.ticket-records, .ticket-conversations {
+.ticket-records,
+.ticket-conversations {
   border-radius: 10px;
-  box-sizing: border-box;
   background-color: var(--tea-green-light);
   width: 100%;
   margin: 10px;
   padding: 15px;
+  max-height: 200px; /* Set a maximum height for the scrollable area */
+  overflow-y: auto;
 }
 
-.ticket-records-messages, .ticket-conversations-messages {
+.ticket-records-messages,
+.ticket-conversations-messages {
   border-radius: 10px;
   background-color: var(--tea-green);
   overflow-y: auto;
-  
+  max-height: 200px; /* Set a maximum height for the scrollable area */
 }
 
 
