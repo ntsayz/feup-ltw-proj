@@ -67,6 +67,12 @@
                 <button class="ticket-blue-button" id="add-ticket-button">Track</button>
             </div>
 
+            <?php if ( $_SESSION['user_type'] === 'admin' || $SESSION['user_type'] === 'agent') { ?>
+                    <div>
+                    <button class="ticket-blue-button" id="add-ticket-button">Options</button>
+                    </div>
+             <?php }?>
+
             <div>
                 <button class="ticket-blue-button" id="add-ticket-button">Reply</button>
             </div>
@@ -78,16 +84,74 @@
             <p>Created by <?php echo htmlentities(get_username_by_id($ticket['created_by'])) ?></p>|
             <p>Department: <?php echo htmlentities(get_department_by_id($ticket['department_id'])) ?></p>
         </div>
-    </div>
-</div>
+        </div>
+        </div>
 
             <?php
                 }
             ?>
 
         </div>
+
+
+
+
+
+
+        <div id="new-ticket-overlay" class="overlay">
+            <div class="overlay-content-forms">
+                <h3>Submit New Ticket</h3>
+                <?php if(isset($_SESSION['ERROR'])) { ?>
+                        <small style="color:red"><?php echo htmlentities($_SESSION['ERROR']) ?></small>
+
+                    <?php } else if(isset($_SESSION['SUCCESS'])){ ?>
+                    <small style="color:green"><?php echo htmlentities($_SESSION['SUCCESS']) ?></small>
+                    <?php } unset($_SESSION['ERROR']);unset($_SESSION['SUCCESS']); ?>
+                </form>
+
+                <form action="../../actions/action_submit_ticket.php" method="post" required>
+                    <div>
+                        <input type="text" id="title" name="title" placeholder="Title" required>
+                    </div>
+
+                    <div>
+                        <textarea id="description" name="description" class="fixed-size-textarea" placeholder="Write the description here" required></textarea>
+                    </div>
+
+                    <div>
+                        <label for="priority">Priority</label>
+                        <select id="priority" name="priority" required>
+                            <?php for($i=1; $i<=5; $i++) { ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="department">Department</label>
+                        <select id="department" name="department">
+                            <option value="">None</option>
+                            <?php
+                                $departments = get_departments();
+                                foreach($departments as $department) {
+                            ?>
+                                <option value="<?php echo $department['id']; ?>"><?php echo get_department_by_id($department['id']); ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
+                    <div>
+                        <input type="submit" value="Submit" class="ticket-blue-button">
+                    </div>
+
+                </form>
+
+                    
+            </div>
+        </div>
+
         <div>
-            <button class="main-blue-button" id="add-ticket-button">Submit new ticket</button>
+        <button class="main-blue-button" id="add-ticket-button" onclick="document.getElementById('new-ticket-overlay').style.display='flex'">Submit new ticket</button>
         </div>
 
         <h3>Submissions and tracking</h3>

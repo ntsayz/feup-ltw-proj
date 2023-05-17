@@ -218,6 +218,8 @@ main .container p {
   align-items: flex-start;
 }
 
+
+
 .overlay-info {
   display: flex;
   justify-content:end;
@@ -297,5 +299,53 @@ main .container p {
 
 
 
+/* ------     FORMS    ----- */
+
+.overlay-content-forms {
+  background: var(--tea-green);
+  padding: 20px;
+  border-radius: 10px;
+  width: auto;
+  height: auto;
+  max-width: auto;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.overlay-content-forms input {
+  margin: 10px;
+  width: 80%;
+  color:var(--main-blue-darker) !important;
+  border-radius: 10px;
+  border: 1px solid var(--main-blue-darker);
+  padding: 5px;
+}
+.overlay-content-forms select {
+  background:var(--main-blue);
+  border:0;
+  color:var(--tea-green);
+  padding:10px;
+  padding-right: 10px;
+  font-size:20px;
+  width: auto;
+  margin:20px auto;
+}
+
+.overlay-content-forms button {
+  color:var(--tea-green);
+}
+
+#add-ticket-button:hover {
+  cursor: pointer;
+  transition-delay: 0.3s;
+}
+
+.fixed-size-textarea {
+  width: 300px;
+  height: 200px;
+  resize: none;  /* Prevent resizing */
+}
   
 
