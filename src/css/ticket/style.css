@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400;600&display=swap');
+
+:root {
+  --main-blue: #022B3A;
+  --main-blue-darker: #011D27;
+  --tea-green: #CADBC0;
+  --tea-green-light: #A8C397;
+  --pink-bittersweet: #F97068;
+  --pink-melon: #FCB4B1;
+}
+
+body {
+  background: var(--tea-green);
+  color: var(--main-blue-darker);
+  font-family: 'Roboto Mono', monospace;
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+}
+
+
+
+.wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+
+
+main {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.overlay {
+  color: var(--main-blue-darker);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  overflow-y: auto;
+}
+
+.overlay-content {
+  background: var(--tea-green);
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  height: 90%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
+.ticket-records,
+.ticket-conversations {
+  border-radius: 10px;
+  background-color: var(--tea-green-light);
+  width: 97%;
+  margin: 10px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.ticket-records-messages,
+.ticket-conversations-messages {
+  border-radius: 10px;
+  background-color: var(--tea-green);
+  overflow-y: auto;
+  box-sizing: border-box;
+  max-height: 200px;
+}
+
+.ticket-overlay-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticket-overlay-buttons button {
+  border-radius: 10px;
+}
+
+.overlay-info {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: auto;
+  margin-right: 2px;
+}
+
+.overlay-info p {
+  margin: 0;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.ticket-box {
+  flex: 0 0 auto;
+  width: 200px;
+  margin: 10px 10px;
+  padding: 10px;
+  border-radius: 15px;
+  color: var(--main-blue-darker);
+  box-shadow: 1px 1px 5px 1px gray;
+  background: var(--tea-green);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: grab;
+}
+
+.ticket-blue-button {
+  background: var(--main-blue);
+  border: 0;
+  color: var(--tea-green);
+  padding: 10px;
+  padding-right: 10px;
+  font-size: 20px;
+  width: 90%;
+  margin: 20px auto;
+  display: block;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.ticket-blue-button:hover {
+  background: var(--main-blue-darker);
+}
+
+.ticket-overlay-buttons {
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.ticket-overlay-buttons button {
+  border-radius: 10px;
+}
+
+.ticket-overlay-buttons button:hover {
+  cursor: pointer;
+}
+
+.ticket-input {
+  margin-right: auto;
+  width: 70%;
+  margin-left: 10px;
+  padding: 10px;
+  background-color: var(--tea-green);
+  color: var(--main-blue);
+  border: 1px solid var(--main-blue);
+  border-radius: 10px;
+}
+
+.ticket-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+
+/* Path: src/css/ticket/style.css */
+
+
+
+
+a:link,a:visited , a:hover, a:active{
+  text-decoration: none;
+  color:var(--main-blue-darker);
+}
+.red-error{
+  color:red;
+}
+
+.very-small-text {
+  font-size: 0.8em;
+}
+.main-blue-button{
+  background:var(--main-blue);
+  border:0;
+  color:var(--tea-green);
+  padding:10px;
+  font-size:20px;
+  width: 50%; /* adjust the width to 90% for responsiveness */
+  margin:20px auto;
+  display:block;
+  box-sizing: border-box; /* box-sizing to border-box so padding is included in the width */
+}
+
+#title{
+  color:var(--tea-green) !important;
+}
+
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #022B3A;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-sizing: border-box;
+  z-index: 2; /* Increase z-index to layer header above content */
+}
+
+#sidebar-toggle-button {
+  display: block;
+  font-size: 1.5em;
+  background-color: transparent;
+  border: none;
+  color: var(--tea-green);
+  cursor: pointer;
+}
+  
+main {
+  width: 100%;
+}
+
+.ticket-form { 
+  margin-top:30px;
+  justify-content:center;
+}
+
+
+select {
+  background:var(--main-blue);
+  border:0;
+  color:var(--tea-green);
+  padding:10px;
+  font-size:20px;
+  width: 90%;
+  margin:20px auto;
+}

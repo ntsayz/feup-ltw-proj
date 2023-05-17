@@ -45,12 +45,12 @@ require_once(__DIR__.'/../../database/departments.php');
 
             <?php if ($_SESSION['user_type'] === 'admin' || $SESSION['user_type'] === 'agent') { ?>
                 <div>
-                    <button class="ticket-blue-button" id="add-ticket-button">Options</button>
+                    <button onclick="" class="ticket-blue-button" id="add-ticket-button">Options</button>
                 </div>
             <?php }?>
 
-            <div>
-                <button class="ticket-blue-button" id="add-ticket-button">Reply</button>
+            <div id="ticket-forward">
+                <button  class="ticket-blue-button" id="add-ticket-button" data-ticket-id="<?php echo $ticket['id']">More</button>
             </div>
         </div>
 
@@ -63,3 +63,4 @@ require_once(__DIR__.'/../../database/departments.php');
         
     </div>
 </div>
+<script src="/scripts/script.js"></script>

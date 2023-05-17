@@ -33,7 +33,7 @@
                         <p><?php echo htmlentities(substr($ticket['description'], 0, 45)) ?>...</p>
                     </div>
                     
-                    <?php require(__DIR__.'/../common/ticket.php');?>
+                    <?php require(__DIR__.'/../common/ticket_overlay.php');?>
 
                 <?php
                 }

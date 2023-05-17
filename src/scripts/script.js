@@ -128,6 +128,15 @@ function openTicketOverlay(ticketId) {
     }
 }
 
+function forwardtoTicket(ticketId) {
+    var ticketIdElement = document.getElementById('ticket-forward');
+    var ticketId = ticketIdElement.dataset.ticketId;
+
+    // Use the ticket ID in your logic
+    var pageUrl = 'http://' + window.location.host + '/../../pages/ticket.php?ticket_id=' + ticketId;
+    window.location.href = pageUrl;
+}
+
 /* 
 
 <?php
