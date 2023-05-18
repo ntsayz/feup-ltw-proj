@@ -62,6 +62,11 @@ main {
   overflow-y: auto;
 }
 
+.overlay-content h2:hover {
+  cursor: pointer;
+}
+
+
 .ticket-records,
 .ticket-conversations {
   border-radius: 10px;

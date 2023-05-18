@@ -234,6 +234,10 @@ li {
   max-width: 90%;
 }
 
+.overlay-content h2:hover {
+  cursor: pointer;
+}
+
 
 
 

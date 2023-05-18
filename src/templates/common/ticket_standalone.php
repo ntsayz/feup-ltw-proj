@@ -87,10 +87,10 @@ require_once(__DIR__.'/../../database/departments.php');
 
                     <div class="overlay-info">
                         <p>Priority: <?php echo htmlentities($ticket['priority']) ?></p>|
-                        <p>Status: <?php echo htmlentities(get_status_name_by_id($ticket['status_id'])) ?></p>|
-                        <p>Created by <?php echo htmlentities(get_username_by_id($ticket['created_by'])) ?></p>|
-                        <p>Department: <?php echo htmlentities(get_department_by_id($ticket['department_id'])) ?></p>
-                        <p>Created at: <?php echo htmlentities($ticket['created_at']) ?></p>
+                        <p><?php echo htmlentities(get_status_name_by_id($ticket['status_id'])) ?></p>|
+                        <p><?php echo htmlentities(get_username_by_id($ticket['created_by'])) ?></p>|
+                        <p><?php echo htmlentities(get_department_by_id($ticket['department_id'])) ?></p>|
+                        <p><?php echo htmlentities($ticket['created_at']) ?></p>
                     </div>
                 </div>
             </div>        

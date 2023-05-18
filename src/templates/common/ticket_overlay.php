@@ -8,7 +8,7 @@ require_once(__DIR__.'/../../database/departments.php');
 
 <div id="overlay-<?php echo $ticket['id'] ?>" class="overlay">
     <div class="overlay-content">
-        <h2><?php echo htmlentities($ticket['title']) ?></h2>
+        <a><h2 class="ticket-forward" data-ticket-id="<?php echo $ticket['id']?>"><?php echo htmlentities($ticket['title']) ?></h2></a>
         <p><?php echo htmlentities($ticket['description']) ?></p>
         
         
@@ -50,7 +50,7 @@ require_once(__DIR__.'/../../database/departments.php');
             <?php }?>
 
             <div>
-                <button class="ticket-blue-button" id="add-ticket-button">Reply</button>
+                <button class="ticket-blue-button ticket-forward" data-ticket-id="<?php echo $ticket['id']?>">More</button>
             </div>
         </div>
 

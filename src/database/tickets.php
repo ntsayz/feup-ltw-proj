@@ -64,6 +64,18 @@ function submit_ticket($title, $description, $priority, $status_id, $user_id, $d
     }
 }
 
+//function to submit a ticket record using these args 'ticket_id', 'author_id', 'action'
+function submit_ticket_record($ticket_id, $author_id, $action){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('INSERT INTO ticket_records (ticket_id, author_id, action) VALUES (?, ?, ?)');
+        $stmt->execute(array($ticket_id, $author_id, $action));
+        return $dbh->lastInsertId();  // Return the last inserted ID
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
 
 
 ?>
