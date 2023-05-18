@@ -25,4 +25,19 @@ function get_department_by_id($id){
     }
 }
 
+//function to get agents in a department
+function get_agents_by_department($department_id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT agent_id FROM agent_department WHERE department_id = ?');
+        $stmt->execute(array($department_id));
+        $agents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $agents;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
+
+
 ?>

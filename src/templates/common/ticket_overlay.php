@@ -43,7 +43,7 @@ require_once(__DIR__.'/../../database/departments.php');
                 <button class="ticket-blue-button" id="add-ticket-button">Track</button>
             </div>
 
-            <?php if ($_SESSION['user_type'] === 'admin' || $SESSION['user_type'] === 'agent') { ?>
+            <?php if ($_SESSION['user_type'] === 'admin' || $_SESSION['user_type'] === 'agent') { ?>
                 <div>
                     <button class="ticket-blue-button" id="add-ticket-button">Options</button>
                 </div>

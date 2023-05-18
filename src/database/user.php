@@ -170,6 +170,19 @@
     }
   }
 
+
+//function to get users with a certain type
+function get_users_by_type($type){
+  global $dbh;
+  try {
+    $stmt = $dbh->prepare('SELECT * FROM users WHERE user_type = ?');
+    $stmt->execute(array($type));
+    return $stmt->fetchAll();
+  } catch(PDOException $e) {
+    return -1;
+  }
+}
+
   
 
 

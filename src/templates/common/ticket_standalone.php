@@ -79,17 +79,13 @@ require_once(__DIR__.'/../../database/departments.php');
                         <div class="ticket-buttons">
                             <button class="ticket-blue-button" id="add-ticket-button">Track</button>
 
-                            <?php if ($_SESSION['user_type'] === 'admin' || $SESSION['user_type'] === 'agent') { ?>
+                            <?php if ($_SESSION['user_type'] === 'admin' || $_SESSION['user_type'] === 'agent') { ?>
                                 <button class="ticket-blue-button" id="add-ticket-button">Options</button>
                             <?php }?>
                         </div>
                     </div>
 
                     <div class="overlay-info">
-                        <p>Priority: <?php echo htmlentities($ticket['priority']) ?></p>|
-                        <p><?php echo htmlentities(get_status_name_by_id($ticket['status_id'])) ?></p>|
-                        <p><?php echo htmlentities(get_username_by_id($ticket['created_by'])) ?></p>|
-                        <p><?php echo htmlentities(get_department_by_id($ticket['department_id'])) ?></p>|
                         <p><?php echo htmlentities($ticket['created_at']) ?></p>
                     </div>
                 </div>
@@ -97,48 +93,74 @@ require_once(__DIR__.'/../../database/departments.php');
         </div>
     </main>
 
-    <aside class= "ticket-form">
+    <aside class="ticket-form">
         <form action="" method="post" required>
-                
-                <div>
-                    <label for="priority">Priority</label><br>
-                    <select id="priority" name="priority" required>
-                        <?php for ($i = 1; $i <= 5; $i++) { ?>
-                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
+            <div>
+                <label for="status">Status</label><br>
+                <select id="status" name="status" required>
+                    <?php
+                    $statuses = get_statuses();
+                    foreach ($statuses as $status) {
+                        $selected = ($status['id'] == $ticket['status_id']) ? 'selected' : '';
+                        echo "<option value='{$status['id']}' $selected>{$status['name']}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
 
-                <div>
-                    <label for="department">Department</label><br>
-                    <select id="department" name="department">
-                        <option value="">None</option>
-                        <?php
-                        $departments = get_departments();
-                        foreach ($departments as $department) {
-                        ?>
-                            <option value="<?php echo $department['id']; ?>">
-                                <?php echo get_department_by_id($department['id']); ?>
-                            </option>
-                        <?php } ?>
-                    </select>
-                </div>
+            <div>
+                <label for="priority">Priority</label><br>
+                <select id="priority" name="priority" required>
+                    <?php for ($i = 1; $i <= 5; $i++) {
+                        $selected = ($i == $ticket['priority']) ? 'selected' : '';
+                        echo "<option value='$i' $selected>$i</option>";
+                    }
+                    ?>
+                </select>
+            </div>
 
-                <div>
-                    <label for="priority">Priority</label><br>
-                    <select id="priority" name="priority" required>
-                        <?php for ($i = 1; $i <= 5; $i++) { ?>
-                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
+            <div>
+                <label for="assignee">Assigned Agent</label><br>
+                <select id="assignee" name="assignee" required>
+                    <?php
+                    $assignees = get_agents_by_department($ticket['department_id']);
+                    $hasAssignedAgent = !is_null($ticket['assigned_to']);
+                    
+                    if (!$hasAssignedAgent) {
+                        echo "<option value='' selected>None</option>";
+                    }
+                    
+                    foreach ($assignees as $assignee) {
+                        $selected = ($assignee['agent_id'] == $ticket['assigned_to']) ? 'selected' : '';
+                        $username = get_username_by_id($assignee['agent_id']);
+                        echo "<option value='{$assignee['agent_id']}' $selected>{$username}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
 
-                <div>
-                    <input type="submit" value="Submit" onclick="" class="ticket-blue-button">
-                </div>
 
+
+            <div>
+                <label for="department">Department</label><br>
+                <select id="department" name="department">
+                    <option value="">None</option>
+                    <?php
+                    $departments = get_departments();
+                    foreach ($departments as $department) {
+                        $selected = ($department['id'] == $ticket['department_id']) ? 'selected' : '';
+                        echo "<option value='{$department['id']}' $selected>{$department['name']}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div>
+                <input type="submit" value="Submit" class="ticket-blue-button">
+            </div>
         </form>
     </aside>
+
 </div>
 </body>
 </html>

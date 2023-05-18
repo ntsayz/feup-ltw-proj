@@ -103,6 +103,30 @@
             </div>
 
             <h3>Submissions and tracking</h3>
+            
+
+            <div id="scrollableDiv" class="scrollable-div">
+                <?php
+               $tracked_tickets = get_tickets_tracked_and_submitted_by_user();
+
+               if ($tracked_tickets === -1) {
+                   echo "<h2>You have no submitted or tracked tickets yet</h2>";
+               } else {
+                   foreach ($tracked_tickets as $ticket) {
+                ?>
+                    <div class="ticket-box" data-overlay-id="overlay-<?php echo $ticket['id'] ?>">
+                        <small class="very-small-text">Ticket#<?php echo htmlentities($ticket['id']) ?></small>
+                        <h2><?php echo htmlentities($ticket['title']) ?></h2>
+                        <p><?php echo htmlentities(substr($ticket['description'], 0, 45)) ?>...</p>
+                    </div>
+                    
+                    <?php require(__DIR__.'/../common/ticket_overlay.php');?>
+
+                <?php
+                }}
+                ?>
+
+            </div>
 
         </main>
     </div>

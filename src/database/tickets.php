@@ -28,17 +28,7 @@ function get_ticket_by_id($id){
     }
 }
 
-function get_tickets_tracked_by_user(){
-    global $dbh;
-    try {
-        $stmt = $dbh->prepare('SELECT * FROM tickets WHERE id IN (SELECT ticket_id FROM tracked_tickets WHERE user_id = ?)');
-        $stmt->execute(array($_SESSION['user_id']));
-        $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $tickets;
-    } catch(PDOException $e) {
-        return -1;
-    }
-}
+
 //function to get ticket records
 function get_ticket_records($ticket_id){
     global $dbh;
@@ -75,6 +65,39 @@ function submit_ticket_record($ticket_id, $author_id, $action){
         return -1;
     }
 }
+
+function get_tickets_tracked_by_user(){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT * FROM tickets WHERE id IN (SELECT ticket_id FROM tracked_tickets WHERE user_id = ?)');
+        $stmt->execute(array($_SESSION['id']));
+        $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $tickets;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
+//function to get tickets that are being tracked and were submitted by a user
+function get_tickets_tracked_and_submitted_by_user() {
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('
+            SELECT * FROM tickets
+            WHERE id IN (SELECT ticket_id FROM ticket_tracking WHERE user_id = ?)
+            UNION
+            SELECT * FROM tickets
+            WHERE created_by = ?
+        ');
+        $stmt->execute(array($_SESSION['id'], $_SESSION['id']));
+        $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $tickets;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
+
 
 
 
