@@ -107,18 +107,24 @@ ticketBoxes.forEach(function(ticketBox) {
         }
     });
 });
-
 overlays.forEach(function(overlay) {
     overlay.addEventListener('click', function(event) {
-        if (event.target == overlay) {
+        if (event.target === overlay || event.target.classList.contains('overlay-content-forms')) {
             overlay.style.display = 'none';
         }
     });
 });
 
-
 function openNewTicketOverlay() {
     document.getElementById('new-ticket-overlay').style.display = 'flex';
+}
+
+function openTicketFilterOverlay() {
+    document.getElementById('filter-ticket-overlay').style.display = 'flex';
+}
+
+function closeticketFilterOverlay() {
+    document.getElementById('filter-ticket-overlay').style.display = 'none';
 }
 
 function openTicketOverlay(ticketId) {

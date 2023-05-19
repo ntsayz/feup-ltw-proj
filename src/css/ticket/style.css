@@ -254,3 +254,10 @@ select {
   width: 90%;
   margin:20px auto;
 }
+
+
+.filter-buttons {
+  display: flex;
+  margin-left: auto;
+  margin: 10px;
+}
