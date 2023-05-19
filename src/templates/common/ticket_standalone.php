@@ -161,9 +161,9 @@ require_once(__DIR__.'/../../database/departments.php');
                     $agents = get_agent_departments();
                     $hasAssignedAgent = !is_null($ticket['assigned_to']);
                     
-                    if (!$hasAssignedAgent) {
-                        echo "<option value='' selected>None</option>";
-                    }
+                    
+                    echo "<option value='NULL' selected>None</option>";
+                    
                     
                     foreach ($agents as $agent) {
                         $selected = ($agent['agent_id'] == $ticket['assigned_to']) ? 'selected' : '';

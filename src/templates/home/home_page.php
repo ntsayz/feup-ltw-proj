@@ -113,7 +113,7 @@
 
             <h3>All Tickets</h3>
 
-            <div id="scrollableDiv" class="scrollable-div">
+            <div  class="scrollable-div">
                 <?php
                 
                 foreach ($tickets as $ticket) {

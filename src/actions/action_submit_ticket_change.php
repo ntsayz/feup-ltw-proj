@@ -21,14 +21,14 @@ if ($status != $currentTicket['status_id']) {
     // Status changed
     $prevStatus = get_status_name_by_id($currentTicket['status_id']);
     $currStatus = get_status_name_by_id($status);
-    $action = "STATUS CHANGED: $prevStatus TO $currStatus";
+    $action = "changed the status from $prevStatus to $currStatus";
     update_ticket_status($ticketID, $status);
     submit_ticket_record($ticketID, $action, $currentUserId);
 }
 
 if ($priority != $currentTicket['priority']) {
     // Priority changed
-    $action = "PRIORITY CHANGED: {$currentTicket['priority']} TO $priority";
+    $action = "changed the priority from {$currentTicket['priority']} to $priority";
     update_ticket_priority($ticketID, $priority);
     submit_ticket_record($ticketID, $action, $currentUserId);
 }
@@ -37,7 +37,7 @@ if ($assignee != $currentTicket['assigned_to']) {
     // Assignee changed
     $currentAssignee = get_username_by_id($currentTicket['assigned_to']);
     $newAssignee = get_username_by_id($assignee);
-    $action = "ASSIGNED: $currentAssignee TO $newAssignee";
+    $action = "assigned to $newAssignee";
     update_ticket_assignee($ticketID, $assignee);
     submit_ticket_record($ticketID, $action, $currentUserId);
 }
@@ -46,7 +46,7 @@ if ($department != $currentTicket['department_id']) {
     // Department changed
     $currentDepartment = get_department_by_id($currentTicket['department_id']);
     $newDepartment = get_department_by_id($department);
-    $action = "DEPARTMENT CHANGED: $currentDepartment TO $newDepartment";
+    $action = "changed the department from $currentDepartment to $newDepartment";
     update_ticket_department($ticketID, $department);
     submit_ticket_record($ticketID, $action, $currentUserId);
 }
