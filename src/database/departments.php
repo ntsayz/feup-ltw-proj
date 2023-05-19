@@ -38,6 +38,24 @@ function get_agents_by_department($department_id){
     }
 }
 
+//function to get agents departments
+function get_agent_departments(){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT * FROM agent_department');
+        $stmt->execute();
+        $departments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $departments;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
+
+
+
+
+
 
 
 ?>

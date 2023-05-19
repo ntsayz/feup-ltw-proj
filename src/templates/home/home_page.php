@@ -16,7 +16,10 @@
 
         <?php require(__DIR__.'/../common/sidebar.php'); ?>
         <main class="container w_aside">
-            <h3>All Tickets</h3>
+
+        <h3>Submissions and tracking</h3>
+            
+
             <div id="scrollableDiv" class="scrollable-div">
                 <?php
                 require_once(__DIR__.'/../../database/tickets.php');
@@ -25,7 +28,12 @@
                 require_once(__DIR__.'/../../database/status.php');
                 require_once(__DIR__.'/../../database/messages.php');
                 $tickets = get_tickets();
-                foreach ($tickets as $ticket) {
+               $tracked_tickets = get_tickets_tracked_and_submitted_by_user();
+
+               if ($tracked_tickets === -1 || $tracked_tickets === 0) {
+                   echo "<h2>You have no submitted or tracked tickets yet</h2>";
+               } else {
+                   foreach ($tracked_tickets as $ticket) {
                 ?>
                     <div class="ticket-box" data-overlay-id="overlay-<?php echo $ticket['id'] ?>">
                         <small class="very-small-text">Ticket#<?php echo htmlentities($ticket['id']) ?></small>
@@ -36,10 +44,11 @@
                     <?php require(__DIR__.'/../common/ticket_overlay.php');?>
 
                 <?php
-                }
+                }}
                 ?>
 
             </div>
+           
 
             <div id="new-ticket-overlay" class="overlay">
                 <div class="overlay-content-forms">
@@ -102,17 +111,12 @@
                     ticket</button>
             </div>
 
-            <h3>Submissions and tracking</h3>
-            
+            <h3>All Tickets</h3>
 
             <div id="scrollableDiv" class="scrollable-div">
                 <?php
-               $tracked_tickets = get_tickets_tracked_and_submitted_by_user();
-
-               if ($tracked_tickets === -1) {
-                   echo "<h2>You have no submitted or tracked tickets yet</h2>";
-               } else {
-                   foreach ($tracked_tickets as $ticket) {
+                
+                foreach ($tickets as $ticket) {
                 ?>
                     <div class="ticket-box" data-overlay-id="overlay-<?php echo $ticket['id'] ?>">
                         <small class="very-small-text">Ticket#<?php echo htmlentities($ticket['id']) ?></small>
@@ -123,15 +127,19 @@
                     <?php require(__DIR__.'/../common/ticket_overlay.php');?>
 
                 <?php
-                }}
+                }
                 ?>
 
             </div>
+            
+
+            
 
         </main>
     </div>
 
     <script src="/scripts/script.js"></script>
+    <script src="/scripts/ticket/tracking.js"></script>
 </body>
 
 </html>

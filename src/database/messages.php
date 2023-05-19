@@ -11,6 +11,17 @@ function get_messages($ticket_id){
         return -1;
     }
 }
+//function to submit messages
+function submit_message($ticket_id, $user_id, $message){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('INSERT INTO messages (ticket_id, user_id, message) VALUES (?, ?, ?)');
+        $stmt->execute(array($ticket_id, $user_id, $message));
+        return $dbh->lastInsertId();  // Return the last inserted ID
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
 
 
 ?>

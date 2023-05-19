@@ -77,7 +77,25 @@ require_once(__DIR__.'/../../database/departments.php');
                     <div class="ticket-overlay-buttons">
                         <input class="ticket-input">
                         <div class="ticket-buttons">
-                            <button class="ticket-blue-button" id="add-ticket-button">Track</button>
+                        <?php
+                        $tickets_tracked = get_tickets_tracked_by_user();
+                        $tracked = false;
+                        if (is_array($tickets_tracked) || is_object($tickets_tracked)) {
+                            foreach ($tickets_tracked as $ticket_tracked) {
+                                if ($ticket_tracked['ticket_id'] == $ticket['id']) {
+                                    $tracked = true;
+                                    break;
+                                }
+                            }
+                        }
+                        ?>
+
+                        <div>
+                            <button class="ticket-blue-button track-button" style="<?php echo $tracked ? 'display: none;' : '' ?>" data-ticket-id="<?php echo $ticket['id'] ?>"
+                                data-user-id="<?php echo $_SESSION['id'] ?>">Track</button>
+                            <button class="ticket-blue-button untrack-button" style="<?php echo $tracked ? '' : 'display: none;' ?>" data-ticket-id="<?php echo $ticket['id'] ?>"
+                                data-user-id="<?php echo $_SESSION['id'] ?>">Untrack</button>
+                        </div>
 
                             <?php if ($_SESSION['user_type'] === 'admin' || $_SESSION['user_type'] === 'agent') { ?>
                                 <button class="ticket-blue-button" id="add-ticket-button">Options</button>
@@ -93,8 +111,25 @@ require_once(__DIR__.'/../../database/departments.php');
         </div>
     </main>
 
+    <?php
+        $tickets_submitted = get_ticket_submissions_by_user($_SESSION['id']);
+        $submitted = false;
+        if (is_array($tickets_submitted) || is_object($tickets_submitted)) {
+            foreach ($tickets_submitted as $tickets_submitted) {
+                if ($tickets_submitted['created_by'] == $_SESSION['id']) {
+                    $submitted = true;
+                    break;
+                }
+            }
+        }
+        ?>
+
+    <?php
+
+    if($submitted || $_SESSION['user_type'] === 'admin' || $_SESSION['user_type'] === 'agent' ) { ?>
+
     <aside class="ticket-form">
-        <form action="" method="post" required>
+        <form action="../../actions/action_submit_ticket_change.php" method="post" required>
             <div>
                 <label for="status">Status</label><br>
                 <select id="status" name="status" required>
@@ -123,17 +158,18 @@ require_once(__DIR__.'/../../database/departments.php');
                 <label for="assignee">Assigned Agent</label><br>
                 <select id="assignee" name="assignee" required>
                     <?php
-                    $assignees = get_agents_by_department($ticket['department_id']);
+                    $agents = get_agent_departments();
                     $hasAssignedAgent = !is_null($ticket['assigned_to']);
                     
                     if (!$hasAssignedAgent) {
                         echo "<option value='' selected>None</option>";
                     }
                     
-                    foreach ($assignees as $assignee) {
-                        $selected = ($assignee['agent_id'] == $ticket['assigned_to']) ? 'selected' : '';
-                        $username = get_username_by_id($assignee['agent_id']);
-                        echo "<option value='{$assignee['agent_id']}' $selected>{$username}</option>";
+                    foreach ($agents as $agent) {
+                        $selected = ($agent['agent_id'] == $ticket['assigned_to']) ? 'selected' : '';
+                        $username = get_username_by_id($agent['agent_id']);
+                        $dep_name = get_department_by_id($agent['department_id']);
+                        echo "<option value='{$agent['agent_id']}' $selected>{$username} ({$dep_name})</option>";
                     }
                     ?>
                 </select>
@@ -155,11 +191,17 @@ require_once(__DIR__.'/../../database/departments.php');
                 </select>
             </div>
 
+            <?php
+                $_SESSION['current_ticket_id'] = $ticket['id'];
+            ?>
+
             <div>
                 <input type="submit" value="Submit" class="ticket-blue-button">
             </div>
         </form>
     </aside>
+
+    <?php } ?>
 
 </div>
 </body>

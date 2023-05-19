@@ -55,7 +55,7 @@ function submit_ticket($title, $description, $priority, $status_id, $user_id, $d
 }
 
 //function to submit a ticket record using these args 'ticket_id', 'author_id', 'action'
-function submit_ticket_record($ticket_id, $author_id, $action){
+function submit_ticket_record($ticket_id, $action, $author_id){
     global $dbh;
     try {
         $stmt = $dbh->prepare('INSERT INTO ticket_records (ticket_id, author_id, action) VALUES (?, ?, ?)');
@@ -66,11 +66,61 @@ function submit_ticket_record($ticket_id, $author_id, $action){
     }
 }
 
-function get_tickets_tracked_by_user(){
+//function to update  ticket status using these args 'ticket_id', 'status_id'
+function update_ticket_status($ticket_id, $status_id){
     global $dbh;
     try {
-        $stmt = $dbh->prepare('SELECT * FROM tickets WHERE id IN (SELECT ticket_id FROM tracked_tickets WHERE user_id = ?)');
-        $stmt->execute(array($_SESSION['id']));
+        $stmt = $dbh->prepare('UPDATE tickets SET status_id = ? WHERE id = ?');
+        $stmt->execute(array($status_id, $ticket_id));
+        return $dbh->lastInsertId();  // Return the last inserted ID
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+//function to update  ticket priority using these args 'ticket_id', 'priority'
+function update_ticket_priority($ticket_id, $priority){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('UPDATE tickets SET priority = ? WHERE id = ?');
+        $stmt->execute(array($priority, $ticket_id));
+        return $dbh->lastInsertId();  // Return the last inserted ID
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
+//function to update ticket assignee using these args 'ticket_id', 'assignee_id'
+function update_ticket_assignee($ticket_id, $assignee_id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('UPDATE tickets SET assigned_to = ? WHERE id = ?');
+        $stmt->execute(array($assignee_id, $ticket_id));
+        return $dbh->lastInsertId();  // Return the last inserted ID
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
+//function to update ticket department using these args 'ticket_id', 'department_id'
+function update_ticket_department($ticket_id, $department_id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('UPDATE tickets SET department_id = ? WHERE id = ?');
+        $stmt->execute(array($department_id, $ticket_id));
+        return $dbh->lastInsertId();  // Return the last inserted ID
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
+
+
+//function to get ticket submissions by user
+function get_ticket_submissions_by_user($user_id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT * FROM tickets WHERE created_by = ?');
+        $stmt->execute(array($user_id));
         $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $tickets;
     } catch(PDOException $e) {
@@ -78,6 +128,18 @@ function get_tickets_tracked_by_user(){
     }
 }
 
+//function to get tickets being tracked by a user
+function get_tickets_tracked_by_user() {
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT * FROM ticket_tracking WHERE user_id = ?');
+        $stmt->execute(array($_SESSION['id']));
+        $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $tickets;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
 //function to get tickets that are being tracked and were submitted by a user
 function get_tickets_tracked_and_submitted_by_user() {
     global $dbh;
@@ -97,6 +159,29 @@ function get_tickets_tracked_and_submitted_by_user() {
     }
 }
 
+//function to submit to ticket tracking table
+function submit_ticket_tracking($ticket_id, $user_id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('INSERT INTO ticket_tracking (ticket_id, user_id) VALUES (?, ?)');
+        $stmt->execute(array($ticket_id, $user_id));
+        return $dbh->lastInsertId();  // Return the last inserted ID
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
+//function to remove from ticket tracking table
+function remove_ticket_tracking($ticket_id, $user_id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('DELETE FROM ticket_tracking WHERE ticket_id = ? AND user_id = ?');
+        $stmt->execute(array($ticket_id, $user_id));
+        return $stmt->rowCount();
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
 
 
 

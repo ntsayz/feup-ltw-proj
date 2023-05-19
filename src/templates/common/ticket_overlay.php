@@ -39,9 +39,31 @@ require_once(__DIR__.'/../../database/departments.php');
         </div>
 
         <div class="ticket-overlay-buttons">
+
+        
+
+        <?php
+            $tickets_tracked = get_tickets_tracked_by_user();
+            $tracked = false;
+            if (is_array($tickets_tracked) || is_object($tickets_tracked)) {
+                foreach ($tickets_tracked as $ticket_tracked) {
+                    if ($ticket_tracked['ticket_id'] == $ticket['id']) {
+                        $tracked = true;
+                        break;
+                    }
+                }
+            }
+            ?>
+
             <div>
-                <button class="ticket-blue-button" id="add-ticket-button">Track</button>
+                <button class="ticket-blue-button track-button" style="<?php echo $tracked ? 'display: none;' : '' ?>" data-ticket-id="<?php echo $ticket['id'] ?>"
+                    data-user-id="<?php echo $_SESSION['id'] ?>">Track</button>
+                <button class="ticket-blue-button untrack-button" style="<?php echo $tracked ? '' : 'display: none;' ?>" data-ticket-id="<?php echo $ticket['id'] ?>"
+                    data-user-id="<?php echo $_SESSION['id'] ?>">Untrack</button>
             </div>
+
+
+    
 
             <?php if ($_SESSION['user_type'] === 'admin' || $_SESSION['user_type'] === 'agent') { ?>
                 <div>
