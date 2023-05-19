@@ -142,35 +142,30 @@ function forwardToTicket(event) {
     window.location.href = pageUrl;
 }
 
-/* 
+document.addEventListener('DOMContentLoaded', function() {
+    const chatInput = document.getElementById('chat-input');
+    const sendButton = document.getElementById('send-button');
+    const ticketIdElement = document.getElementById('ticket-data');
+    const ticketId = ticketIdElement.getAttribute('data-ticket-id');
 
-<?php
-            require_once(__DIR__.'/../../database/tickets.php');
-            require_once(__DIR__.'/../../database/user.php');
-            require_once(__DIR__.'/../../database/status.php');
-            $tickets = get_tickets();
-            foreach ($tickets as $ticket) {
-        ?>
-                <div class="ticket-box" data-overlay-id="overlay-<?php echo $ticket['id'] ?>">
-                    <h2><?php echo htmlentities($ticket['title']) ?></h2>
-                    <p><?php echo htmlentities($ticket['description']) ?></p>
-                </div>
-                
-                <div id="overlay-<?php echo $ticket['id'] ?>" class="overlay">
-                    <div class="overlay-content">
-                        <h2><?php echo htmlentities($ticket['title']) ?></h2>
-                        <p><?php echo htmlentities($ticket['description']) ?></p>
-                        <p>Priority: <?php echo htmlentities($ticket['priority']) ?></p>
-                        <p>Status ID: <?php echo htmlentities(get_status_name_by_id($ticket['status_id'])) ?></p>
-                        <p>Created by: <?php echo htmlentities(get_username_by_id($ticket['created_by'])) ?></p>
-                        <p>Department: <?php echo htmlentities(get_department_by_id($ticket['department_id'])) ?></p>
-                    </div>
-                </div>
-        <?php
+    sendButton.addEventListener('click', function() {
+        const message = chatInput.value;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/../../actions/action_insert_message.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                // You can perform additional actions after successful submission if needed
             }
-        ?>   
+        };
+        xhr.send('message=' + encodeURIComponent(message) + '&ticket_id=' + ticketId);
 
-*/
+        chatInput.value = '';
+    });
+});
+
 
 
 

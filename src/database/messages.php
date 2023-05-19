@@ -15,7 +15,7 @@ function get_messages($ticket_id){
 function submit_message($ticket_id, $user_id, $message){
     global $dbh;
     try {
-        $stmt = $dbh->prepare('INSERT INTO messages (ticket_id, user_id, message) VALUES (?, ?, ?)');
+        $stmt = $dbh->prepare('INSERT INTO messages (ticket_id, author_id, message,faq_answer) VALUES (?, ?, ?,NULL)');
         $stmt->execute(array($ticket_id, $user_id, $message));
         return $dbh->lastInsertId();  // Return the last inserted ID
     } catch(PDOException $e) {
