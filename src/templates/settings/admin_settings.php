@@ -26,7 +26,7 @@
 
         <div id="filter-ticket-overlay" class="overlay">
                 <div class="overlay-content-forms">
-                    <h3>Filter tickets by</h3>
+                    <h3>Filter Tickets</h3>
                     <?php if (isset($_SESSION['ERROR'])) { ?>
                         <small style="color:red"><?php echo htmlentities($_SESSION['ERROR']) ?></small>
 
