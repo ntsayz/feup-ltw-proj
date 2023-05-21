@@ -11,13 +11,13 @@ if (isset($_POST['add_department'])) {
     if ($result === 1) {
         $base_url = 'http://' . $_SERVER['HTTP_HOST'];
         $current_url_path = dirname($_SERVER['REQUEST_URI']);
-        $page_url = $base_url . $current_url_path . '/../pages/user_dashboard.php';
+        $page_url = $base_url . $current_url_path . '/../pages/department.php?id=' . $department_id;
         $_SESSION['SUCCESS'] = 'Department added successfully';
     } else {
         $_SESSION['ERROR'] = 'Something went wrong';
         $base_url = 'http://' . $_SERVER['HTTP_HOST'];
         $current_url_path = dirname($_SERVER['REQUEST_URI']);
-        $page_url = $base_url . $current_url_path . '/../pages/user_dashboard.php';
+        $page_url = $base_url . $current_url_path . '/../pages/department.php?id=' . $department_id;
     }
     header("Location: $page_url");
 }
