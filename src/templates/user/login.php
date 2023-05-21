@@ -14,6 +14,7 @@
         <div class="box">
             <h1>Login</h1>
             <form action="../actions/action_login.php" method="post" required>
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <input type="text" id="username" name="username" placeholder="username" autocomplete="off" required/>
                 <input type="password" id="password" name="password" placeholder="password" required/>
                  <button type="submit" value="Next">Login</button>

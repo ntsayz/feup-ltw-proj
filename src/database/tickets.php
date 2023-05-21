@@ -243,6 +243,32 @@ function filter_tickets($status = null, $priority = null, $assignee = null, $dep
 }
 
 
+//function to get ticket info by department
+function get_tickets_by_department($department_id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT * FROM tickets WHERE department_id = ?');
+        $stmt->execute(array($department_id));
+        $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $tickets;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
+
+//function get ticket info by assignee
+function get_tickets_by_assignee($assignee_id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT * FROM tickets WHERE assigned_to = ?');
+        $stmt->execute(array($assignee_id));
+        $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $tickets;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
 
 
 

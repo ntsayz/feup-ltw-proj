@@ -22,6 +22,7 @@
 
                 <h2>Change Username</h2>
                 <form method="post" action="../actions/action_change_username.php">
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
                 
                 <?php if(isset($_SESSION['ERROR'])) { ?>
@@ -39,6 +40,7 @@
                 
                 <h2>Change Password</h2>
                 <form method="post" action="../actions/action_change_password.php">
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
                     <?php if(isset($_SESSION['ERROR'])) { ?>
                         <small style="color:red"><?php echo htmlentities($_SESSION['ERROR']) ?></small>
@@ -54,6 +56,7 @@
                 
                 <h2>Change Email</h2>
                 <form method="post" action="../actions/action_change_email.php">
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
                     <?php if(isset($_SESSION['ERROR'])) { ?>
                         <small style="color:red"><?php echo htmlentities($_SESSION['ERROR']) ?></small>
@@ -70,7 +73,8 @@
 
 
             <div class="box" style="margin-top:30px">
-            <form method="post" action="../actions/action_logout.php">
+            <form method="post"  action="../actions/action_logout.php">
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                     <button type="submit">Log out</button>
                 </form>
             </div>

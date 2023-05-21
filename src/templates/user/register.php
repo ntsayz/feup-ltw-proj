@@ -14,6 +14,7 @@
             <div class="box">
                 <h1>Registration</h1>
                 <form action="../actions/action_register.php" method="post" required>
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                     <input type="text" id="full_name" name="full_name" placeholder="Full Name" autocomplete="off" required/>
                     <input type="text" id="email" name="email" placeholder="Email" required/>
                     <input type="text" id="username" name="username" placeholder="Username" autocomplete="off" required/>

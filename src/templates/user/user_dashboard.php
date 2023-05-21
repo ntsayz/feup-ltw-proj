@@ -34,17 +34,17 @@
             </div>
 
             <div class="user-records dash-box">
-            <h3>User Records</h3>
-            <div class="scrollable" style="max-height: 200px; overflow-y: auto;">
-                <?php
-                $ticketsRecords = get_ticket_records_by_author($user_id);
-                foreach ($ticketsRecords as $record) {
-                    echo "<p><strong> Ticket#" . htmlentities($record['id'])."</strong> " .
-                        htmlentities($record['action']) . "</p>";
-                }
-                ?>
+                <h3>User Records</h3>
+                <div class="scrollable" style="max-height: 200px; overflow-y: auto;">
+                    <?php
+                    $ticketsRecords = get_ticket_records_by_author($user_id);
+                    foreach ($ticketsRecords as $record) {
+                        echo "<p><strong> Ticket#" . htmlentities($record['id'])."</strong> " .
+                            htmlentities($record['action']) . "</p>";
+                    }
+                    ?>
+                </div>
             </div>
-        </div>
 
 
             <div class="user-tickets dash-box">
@@ -70,6 +70,7 @@
                 
                     <h3>Select User Type</h3>
                     <form action="../../actions/change_user_type.php" method="post">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <select id="user-type" name="user-type">
                             <option value="admin" <?php if ($target_user_type === 'admin') { echo 'selected'; } ?>>Admin</option>
                             <option value="client" <?php if ($target_user_type === 'client') { echo 'selected'; } ?>>Client</option>
@@ -97,6 +98,63 @@
                 }
                 ?>
             </div>
+
+            <?php if ($_SESSION['user_type'] === 'admin') { $_SESSION['target_user_id'] = $user_id; ?>
+
+            <div class ="dash-box">
+                
+            <h2>Change Username</h2>
+                <form method="post" action="../actions/action_change_username.php">
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
+                
+                <?php if(isset($_SESSION['ERROR'])) { ?>
+                    <small style="color:red"><?php echo htmlentities($_SESSION['ERROR']) ?></small>
+
+                <?php } else if(isset($_SESSION['SUCCESS'])){ ?>
+                <small style="color:green"><?php echo htmlentities($_SESSION['SUCCESS']) ?></small>
+                <?php } unset($_SESSION['ERROR']);unset($_SESSION['SUCCESS']); ?>
+
+                    <input type="text" id="new_username" name="new_username" placeholder="Enter the new username">
+                    <button type="submit">Change Username</button>
+
+                </form>
+
+                
+                <h2>Change Password</h2>
+                <form method="post" action="../actions/action_change_target_password.php">
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
+                    <?php if(isset($_SESSION['ERROR'])) { ?>
+                        <small style="color:red"><?php echo htmlentities($_SESSION['ERROR']) ?></small>
+
+                    <?php } else if(isset($_SESSION['SUCCESS'])){ ?>
+                    <small style="color:green"><?php echo htmlentities($_SESSION['SUCCESS']) ?></small>
+                    <?php } unset($_SESSION['ERROR']);unset($_SESSION['SUCCESS']); ?>
+
+
+                    <input type="password" id="new_password" name="new_password" placeholder="Enter the new password">
+                    <button type="submit">Change Password</button>
+                </form>
+                
+                <h2>Change Email</h2>
+                <form method="post" action="../actions/action_change_email.php">
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
+                    <?php if(isset($_SESSION['ERROR'])) { ?>
+                        <small style="color:red"><?php echo htmlentities($_SESSION['ERROR']) ?></small>
+
+                    <?php } else if(isset($_SESSION['SUCCESS'])){ ?>
+                    <small style="color:green"><?php echo htmlentities($_SESSION['SUCCESS']) ?></small>
+                    <?php } unset($_SESSION['ERROR']);unset($_SESSION['SUCCESS']); ?>
+
+
+                    <input type="email" id="new_email" name="new_email" placeholder="Enter the new email">
+                    <button type="submit">Change Email</button>
+                </form>
+            </div>
+            </div>
+            <?php } ?>
 
 
         </main>

@@ -17,13 +17,7 @@ echo "Department: $department<br>";
 $tickets = filter_tickets($status, $priority, $assignee, $department);
 
 // Loop through the tickets and format them into HTML
-foreach ($tickets as $ticket) {
-    echo "<div class='ticket'>";
-    echo "<h2>{$ticket['title']}</h2>";
-    echo "<p>{$ticket['description']}</p>";
-    // ...and so on...
-    echo "</div>";
-}
+
 ?>
 
 <div id="scrollabledivtickets" class="scrollable-div">

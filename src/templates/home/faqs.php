@@ -47,6 +47,7 @@
             <?php if($_SESSION['user_type'] === 'admin') { ?>
             <h2>Submit a question</h2>
             <form id="submit_faq" action="../actions/action_submit_faq.php" method="post" required>
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <textarea id="question" name="question" form="submit_faq" placeholder="Question" rows="4" cols="20"
                     required></textarea>
                 <textarea id="answer" name="answer" form="submit_faq" placeholder="Answer" rows="4" cols="20"

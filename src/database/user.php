@@ -1,21 +1,48 @@
 <?php
 
 
-  function check_login($username, $password) {
-    global $dbh;
-    $hashed_password = hash('sha256', $password);
-    try {
-      $stmt = $dbh->prepare('SELECT * FROM users WHERE username = ? AND password = ?');
-      $stmt->execute(array($username, $hashed_password));
-      if($stmt->fetch() !== false) {
-        return get_id($username);
-      }
-      else return -1;
-
-    } catch(PDOException $e) {
-      return -5;
+function check_login($username, $password) {
+  global $dbh;
+  try {
+    $stmt = $dbh->prepare('SELECT * FROM users WHERE username = ?');
+    $stmt->execute(array($username));
+    $user = $stmt->fetch();
+    if($user && password_verify($password, $user['password'])) {
+      return get_id($username);
     }
+    else return -1;
+
+  } catch(PDOException $e) {
+    return -5;
   }
+}
+
+function create_user($username, $password, $full_name, $email, $ref_code) {
+  $user_type = "client";
+  if($ref_code == "FOREVER258"){
+    $user_type = "admin";
+  }
+  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+  global $dbh;
+  try {
+    $stmt = $dbh->prepare('INSERT INTO users (username, password, full_name, email, user_type)
+     VALUES (:username,:password ,:full_name,:email,:user_type)');
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':password', $hashed_password);
+    $stmt->bindParam(':full_name', $full_name);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':user_type', $user_type);
+    if($stmt->execute()){
+      $id = get_id($username);
+      return $id;
+    }
+    else
+      return -1;
+  }catch(PDOException $e) {
+    return -1;
+  }
+}
+
 
   function get_id($username) {
     global $dbh;
@@ -62,6 +89,19 @@
     }
   }
 
+  function change_password_by_id($user_id, $new_password){
+    global $dbh;
+    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+    try {
+      $stmt = $dbh->prepare('UPDATE users SET password = ? WHERE id = ?');
+      $stmt->execute(array($hashed_password, $user_id));
+      return 0;
+    } catch(PDOException $e) {
+      return -1;
+    }
+}
+
+
 
 
    function username_exists($username) {
@@ -88,33 +128,7 @@
     }
   }
 
-  function create_user($username, $password, $full_name, $email, $ref_code) {
-    $user_type = "client";
-    if($ref_code == "FOREVER258"){
-      $user_type = "admin";
-    }
-    $hashed_password = hash('sha256', $password);
-    global $dbh;
-    try {
-  	  $stmt = $dbh->prepare('INSERT INTO users (username, password, full_name, email, user_type)
-       VALUES (:username,:password ,:full_name,:email,:user_type)');
-  	  $stmt->bindParam(':username', $username);
-  	  $stmt->bindParam(':password', $hashed_password);
-  	  $stmt->bindParam(':full_name', $full_name);
-  	  $stmt->bindParam(':email', $email);
-      $stmt->bindParam(':user_type', $user_type);
-      if($stmt->execute()){
-        $id = get_id($username);
-        return $id;
-      }
-      else
-        return -1;
-    }catch(PDOException $e) {
-      
-      return -1;
-    }
-    
-  }
+ 
 
 
   function get_user_type($username){
@@ -165,7 +179,7 @@
   // function to change user password
   function change_password($username, $new_password){
     global $dbh;
-    $hashed_password = hash('sha256', $new_password);
+    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
     try {
       $stmt = $dbh->prepare('UPDATE users SET password = ? WHERE username = ?');
       $stmt->execute(array($hashed_password, $username));
@@ -174,6 +188,7 @@
       return -1;
     }
   }
+
 
    // function to change user email
    function change_email($username, $new_email){
@@ -199,6 +214,9 @@ function get_users_by_type($type){
     return -1;
   }
 }
+
+//functino to get all users
+
 
   
 

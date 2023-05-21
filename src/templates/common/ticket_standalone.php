@@ -77,6 +77,7 @@ require_once(__DIR__.'/../../database/departments.php');
                     <div class="ticket-overlay-buttons">
                         
                     <form action="/actions/action_insert_message.php" method="post">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <div id="ticket-data" data-ticket-id="<?php echo $ticket['id']; ?>">
                             <input type="hidden" name="ticket_id" value="<?php echo $ticket['id']; ?>">
                             <input type="text" name="message" id="chat-input" class="ticket-input">
@@ -143,6 +144,7 @@ require_once(__DIR__.'/../../database/departments.php');
 
     <aside class="ticket-form">
         <form action="../../actions/action_submit_ticket_change.php" method="post" required>
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <div>
                 <label for="status">Status</label><br>
                 <select id="status" name="status" required>

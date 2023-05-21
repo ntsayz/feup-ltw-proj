@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/positioning.css">
+    <link rel="stylesheet" href="/css/user/style.css">
 </head>
 
 <body>
@@ -30,7 +31,7 @@
                 $tickets = get_tickets();
                $tracked_tickets = get_tickets_tracked_and_submitted_by_user();
 
-               if ($tracked_tickets === -1 || $tracked_tickets === 0) {
+               if ($tracked_tickets === -1 || $tracked_tickets === 0 || $tickets === 0 || $tickets === -1) {
                    echo "<h2>You have no submitted or tracked tickets yet</h2>";
                } else {
                    foreach ($tracked_tickets as $ticket) {
@@ -62,6 +63,7 @@
                     </form>
 
                     <form action="../../actions/action_submit_ticket.php" method="post" required>
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <div>
                             <input type="text" id="title" name="title" placeholder="Title" required>
                         </div>
@@ -111,10 +113,41 @@
                     ticket</button>
             </div>
 
+            <h3>Tickets Assigned</h3>
+
+
+            <div id="scrollableDiv" class="scrollable-div">
+                    <?php
+                    
+                    $tickets_ass = get_tickets_by_assignee($_SESSION['id']);
+                if ($tickets_ass === 0) {
+                    echo "<h2>You have no assigned tickets yet</h2>";
+                } else {
+                    foreach ($tickets_ass as $ticket) {
+                    ?>
+                        <div class="ticket-box" data-overlay-id="overlay-<?php echo $ticket['id'] ?>">
+                            <small class="very-small-text">Ticket#<?php echo htmlentities($ticket['id']) ?></small>
+                            <h2><?php echo htmlentities($ticket['title']) ?></h2>
+                            <p><?php echo htmlentities(substr($ticket['description'], 0, 45)) ?>...</p>
+                        </div>
+                        
+                        <?php require(__DIR__.'/../common/ticket_overlay.php');?>
+
+                    <?php
+                    }}
+                    ?>
+
+                </div>
+
+            <?php if ($_SESSION['user_type'] === "admin" || $_SESSION['user_type'] === "agent") { ?>
+
+
+                <?php if ($_SESSION['user_type'] === "admin") { ?>
             <h3>All Tickets</h3>
 
             <div  class="scrollable-div">
                 <?php
+                $tickets = get_tickets();
                 
                 foreach ($tickets as $ticket) {
                 ?>
@@ -132,6 +165,8 @@
 
             </div>
 
+            <?php } ?>
+
 
 
             <div id="filter-ticket-overlay" class="overlay">
@@ -146,6 +181,7 @@
                     
 
                     <form action="../../actions/action_filter_tickets.php" method="post" required>
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                     <div>
                         <label for="status">Status</label><br>
                         <select id="status" name="status" required>
@@ -220,13 +256,30 @@
                         </div>
                     </div>
 
-            <div class="filter-container ticket-buttons">
-                <button class="main" id="filter-tickets-button"
+                    <div class="dashboard">
+                        <div class="department-list dash-box">
+                            <h3>Departments</h3>
+                            <ul>
+                                <?php
+                                $departments = get_departments_by_agentb($_SESSION['id']);
+                                
+                                foreach ($departments as $department) {
+                                    echo '<p><a href="/pages/department.php?id=' . $department['id'] . '">' . htmlentities(get_department_by_id($department['id'])) . '</p></a>';
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                    </div>
+
+
+            
+
+            <div class="">
+                <button class="ticket-blue-button" id="filter-tickets-button"
                     onclick="document.getElementById('filter-ticket-overlay').style.display='flex'">Filter</button>
             </div>
 
-
-            <h3>Submissions and tracking</h3>
+            <?php } ?>
             
 
            

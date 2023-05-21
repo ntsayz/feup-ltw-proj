@@ -24,4 +24,16 @@ function get_status_name_by_id($id){
         return -1;
     }
 }
+
+//function to add status
+function add_status($name){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('INSERT INTO status (name) VALUES (?)');
+        $stmt->execute(array($name));
+        return 1;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
 ?>
