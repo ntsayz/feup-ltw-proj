@@ -52,7 +52,7 @@ var deleteURL = '/actions/action_delete_faq.php?id=' + faqId;
                 // Reload the page to reflect the updated FAQ list
                 location.reload();
             } else {
-                console.error('Error deleting FAQw');
+                console.error('Error deleting FAQ');
             }
         })
         .catch(function (error) {
@@ -157,20 +157,81 @@ document.addEventListener('DOMContentLoaded', function() {
     sendButton.addEventListener('click', function() {
         const message = chatInput.value;
 
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', '/../../actions/action_insert_message.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log(xhr.responseText);
-                // You can perform additional actions after successful submission if needed
-            }
-        };
-        xhr.send('message=' + encodeURIComponent(message) + '&ticket_id=' + ticketId);
+        const postData = new URLSearchParams();
+        postData.append('message', message);
+        postData.append('ticket_id', ticketId);
+
+        fetch('../actions/action_insert_message.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: postData
+        })
+        .then(response => response.text())
+        .then(text => {
+            console.log(text);
+            // You can perform additional actions after successful submission if needed
+        })
+        .catch(error => console.error('Error:', error));
 
         chatInput.value = '';
     });
 });
+
+
+
+var removeUserButtons = document.querySelectorAll('.remove-user-button');
+
+// Add event listeners to remove user buttons
+removeUserButtons.forEach(function (button) {
+    button.addEventListener('click', removeUserFromDepartment);
+});
+
+// Function to handle the remove user button click
+// Function to handle the remove user button click
+function removeUserFromDepartment() {
+    var userDepartmentId = this.getAttribute('data-user-id');
+    var departmentId = this.getAttribute('data-department-id');
+
+    // Send an HTTP request to remove the user from the department with the specified IDs
+    var removeURL = '/actions/action_remove_agent_department.php';
+
+    fetch(removeURL, { 
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ agent_id: userDepartmentId, department_id: departmentId, _method: 'DELETE' })
+    })
+        .then(function (response) {
+            if (response.ok) {
+                // Reload the page to reflect the updated user department list
+                location.reload();
+            } else {
+                console.error('Error removing user from department');
+            }
+        })
+        .catch(function (error) {
+            console.error('Error removing user from department:', error);
+        });
+}
+
+
+
+$("#filter-ticket-overlay form").on("submit", function(event) {
+    event.preventDefault();
+
+    // Serialize the form data
+    let formData = $(this).serialize();
+
+    // Send the filter values to the server-side script
+    $.post("../actions/action_filter_tickets.php", formData, function(data) {
+        // Insert the returned HTML into the #scrollabledivtickets
+        $("#scrollabledivtickets").html(data);
+    });
+});
+
+
+
 
 
 

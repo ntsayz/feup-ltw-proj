@@ -52,6 +52,31 @@ function get_agent_departments(){
 }
 
 
+//function to get department by agent id
+function get_departments_by_agent_id($agent_id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT department_id FROM agent_department WHERE agent_id = ?');
+        $stmt->execute(array($agent_id));
+        $departments = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+        return $departments;
+    } catch(PDOException $e) {
+        return [];
+    }
+}
+
+
+//function to remove agent from department
+function remove_agent_from_department($agent_id,$department_id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('DELETE FROM agent_department WHERE agent_id = ? AND department_id = ?');
+        $stmt->execute(array($agent_id,$department_id));
+        return 1;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
 
 
 

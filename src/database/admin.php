@@ -18,6 +18,25 @@
         }
     }
 
+    //function change user type by id and target type
+    function change_user_type_by_id($id,$type){
+        global $dbh;
+        try {
+          $stmt = $dbh->prepare('UPDATE users SET user_type=:user_type WHERE id=:id');
+            $stmt->bindParam(':user_type', $type);
+            $stmt->bindParam(':id', $id);
+          if($stmt->execute()){
+            return 0;
+          }
+          else{
+            return -1;
+          }
+            
+        }catch(PDOException $e) {
+          return -1;
+        }
+    }
+
     function get_all_users(){
         global $dbh;
         try {

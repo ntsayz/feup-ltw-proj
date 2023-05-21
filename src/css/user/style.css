@@ -1,0 +1,34 @@
+.dashboard {
+    border-radius: 10px;
+    background-color: var(--tea-green-light);
+    width: 50%;
+    margin: 10px auto;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.dash-box {
+    color: var(--main-blue-darker);
+    background: var(--tea-green);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    overflow-y: auto;
+    box-sizing: border-box;
+    margin: 20px;
+}
+
+
+.scrollable {
+    border-radius: 10px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    max-height: auto; /* Set a maximum height for the scrollable area */
+    max-width: 90%;
+}

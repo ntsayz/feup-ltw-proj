@@ -133,6 +133,23 @@
         
   }
 
+  //function to get user type by id
+  function get_user_type_by_id($id){
+    global $dbh;
+    try {
+      $stmt = $dbh->prepare('SELECT user_type FROM users WHERE id = ?');
+      $stmt->execute(array($id));
+      if($row = $stmt->fetch()) {
+        return $row['user_type'];
+    }
+  	  
+    }catch(PDOException $e) {
+      
+      return "error getting user type";
+    }
+        
+  }
+
   // function to change user username
   function change_username($username, $new_username){
     global $dbh;

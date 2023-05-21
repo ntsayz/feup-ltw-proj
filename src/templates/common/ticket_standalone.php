@@ -76,9 +76,14 @@ require_once(__DIR__.'/../../database/departments.php');
 
                     <div class="ticket-overlay-buttons">
                         
-                    <div id="ticket-data" data-ticket-id="<?php echo $ticket['id']; ?>"></div>
-                    <input type="text" name="chat-input" id="chat-input" class="ticket-input">
-                    <button id="send-button" class="send-button">Send</button>
+                    <form action="/actions/action_insert_message.php" method="post">
+                        <div id="ticket-data" data-ticket-id="<?php echo $ticket['id']; ?>">
+                            <input type="hidden" name="ticket_id" value="<?php echo $ticket['id']; ?>">
+                            <input type="text" name="message" id="chat-input" class="ticket-input">
+                            <button type="submit" id="send-button" class="send-button">Send</button>
+                        </div>
+                    </form>
+
 
                     
 

@@ -183,6 +183,66 @@ function remove_ticket_tracking($ticket_id, $user_id){
     }
 }
 
+//function to get ticket records by author id
+function get_ticket_records_by_author($author_id){
+    global $dbh;
+    try {
+        $stmt = $dbh->prepare('SELECT * FROM ticket_records WHERE author_id = ?');
+        $stmt->execute(array($author_id));
+        $ticket_records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $ticket_records;
+    } catch(PDOException $e) {
+        return -1;
+    }
+}
+
+function filter_tickets($status = null, $priority = null, $assignee = null, $department = null) {
+    global $dbh;
+
+    $query = "SELECT * FROM tickets WHERE 1=1";
+
+    if ($status !== "NULL") {
+        $query .= " AND status_id = :status";
+    }
+
+    if ($priority !== "NULL") {
+        $query .= " AND priority = :priority";
+    }
+
+    if ($assignee !== "NULL") {
+        $query .= " AND assigned_to = :assignee";
+    }
+
+    if ($department !== "NULL") {
+        $query .= " AND department_id = :department";
+    }
+
+    $stmt =  $dbh->prepare($query);
+
+    echo $query;
+
+    if ($status !== "NULL") {
+        $stmt->bindParam(':status', $status);
+    }
+
+    if ($priority !== "NULL") {
+        $stmt->bindParam(':priority', $priority);
+    }
+
+    if ($assignee !== "NULL") {
+        $stmt->bindParam(':assignee', $assignee);
+    }
+
+    if ($department !== "NULL") {
+        $stmt->bindParam(':department', $department);
+    }
+
+    $stmt->execute();
+    
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 
 
 
