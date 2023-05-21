@@ -74,8 +74,8 @@ $dep_id = $_SESSION['target_department_id'];
                     <?php
                     $ticketsRecords = get_tickets_by_department($dep_id);
                     foreach ($ticketsRecords as $record) {
-                        echo "<p><strong> Ticket#" . htmlentities($record['id'])."</strong> " .
-                            htmlentities($record['action']) . "</p>";
+                        echo "<p><strong> Ticket#" . htmlentities($record['id'])."</strong></p>";
+                        
                     }
                     ?>
                 </div>
