@@ -1,3 +1,3 @@
 # Ticket Management System
 
-TO REGISTER AS ADMIN REFERRAL CODE HAS TO BE **FOREVER258**
+
